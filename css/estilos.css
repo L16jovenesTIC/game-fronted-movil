@@ -33,6 +33,12 @@ footer {
 	margin-bottom: 20px;
 }
 
+
+/* habilita el scroll para el menu lateral */
+.mp-level-open{
+	  overflow: scroll;
+}
+
 /* User Menu*/
 
 .usermenu .logo {

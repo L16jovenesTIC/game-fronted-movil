@@ -7,7 +7,7 @@ define(['backbone', 'text!tmpl/intro.html'], function(Backbone, template){
 		},
 		boton: function(e) {
 			e.preventDefault()
-			Base.app.navigate('#homenoreg', {trigger:true})
+			Base.app.navigate('#homegame', {trigger:true})
 		},
 		initialize:function(){
 			//this.template = template

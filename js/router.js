@@ -7,10 +7,13 @@ define(function(require){
         routes: {
             "": "rIntro",
             "homenoreg": "rHomeNoReg",
+            "homegame": "rHomeGame",
+            "selupz": "rSelUPZ",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
 
+            // Inicia el menú lateral
             classie = require('mp/classie')
             this.mp = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
             //debugger
@@ -20,7 +23,6 @@ define(function(require){
             if(this.main){
                 this.main.remove()
                 this.mp._resetMenu()
-                
             }
             // Aqui el codigo adicional
             call.apply(this,args)
@@ -38,6 +40,20 @@ define(function(require){
             var homenoreg = require('views/vHomeNoRegMain')
             this.main = new homenoreg()
             $('#main').html(this.main.render().el)
+        },
+        rHomeGame: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var homegame = require('views/vHomeGameMain')
+            this.main = new homegame()
+            $('#main').html(this.main.render().el)
+        },
+        rSelUPZ: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var selupz = require('views/vSelUpzMain')
+            this.main = new selupz()
+            $('#main').html(this.main.render().el)
+            // Activa la opción de deslizar la galeria con gestos Touch
+            require('utils/activaSliderTouch')()
         }
     });
 
