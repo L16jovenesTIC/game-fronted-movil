@@ -33,6 +33,50 @@ footer {
 	margin-bottom: 20px;
 }
 
+/* User Menu*/
+
+.usermenu .logo {
+	margin-top: 10px;
+	--height: 200px;
+}
+
+.usermenu .list-group, .usermenu .list-group a{
+	color: white;
+}
+
+.usermenu .list-group li, .usermenu .list-group a{
+	border: none;
+	background-color: transparent;
+	padding: 4px;
+	border-bottom: solid 1px #82848E;
+}
+
+.usermenu .infouser:after {
+	background: url('../img/im_usermenu_divider_top.png') center center no-repeat;
+	content: "";
+	display: block;
+	height: 5px;
+}
+
+.usermenu .infouser img {
+	width: 100px;
+}
+
+.usermenu .infouser .list-group li:last-child{
+	border: none;
+}
+
+.usermenu .infouser .list-group li:last-child div{
+	padding: 0;
+}
+
+.usermenu .menuList {
+	font-size: 2rem;
+}
+.usermenu .menuList a{
+	padding: 10px;
+}
+
 /* GLOBAL MAIN */
 
 .main {

@@ -9,7 +9,8 @@
 
 requirejs.config({
     baseUrl: 'js/lib',
-    shim:{ 'backbone': {
+    shim:{ 
+    	'backbone': {
             //These script dependencies should be loaded before loading
             //backbone.js
             deps: ['underscore', 'jquery'],
@@ -19,6 +20,8 @@ requirejs.config({
         },
         'bootstrap': ['jquery'],
         'jqueryMobile': ['jquery'],
+        'mp/classie': ['mp/modernizr.custom'],
+        'mp/mlpushmenu': ['mp/classie','mp/modernizr.custom'],
     },
     paths: {
         jquery: 'jquery.min',
@@ -32,12 +35,13 @@ requirejs.config({
         models: '../models',
         tmpl: '../tmpl',
         utils: '../utils',
+        mp: 'pushmenu',
     }
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['backbone', 'router'], function(Backbone){
+requirejs(['backbone', 'router', 'mp/mlpushmenu'], function(Backbone){
 
 	var Base = {
 		Views : {},
@@ -55,5 +59,4 @@ requirejs(['backbone', 'router'], function(Backbone){
 	var Router = require('router')
 	//Base.intro = require('views')
 	Base.app = new Router()
-
 });

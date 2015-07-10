@@ -8,35 +8,88 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
+    <!-- <link rel="stylesheet" type="text/css" href="js/lib/pushmenu/css/normalize.css" />  -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/component.css" rel="stylesheet" type="text/css" /> 
     <link href="css/estilos.css" rel="stylesheet">
 
     <script data-main="app.js" src="js/lib/require.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
 
-  	<header class="container">
-  		<nav class="row sup text-center">
-  			<div class="col-xs-3 ">
-  				<img src="img/bt_header_go_to_menu.png"> 
-  			</div>
-  			<div class="col-xs-6 ">
-  				<p class="row ">Loren Ipsum Loren Ipsum</p>
-  			</div>
-  			<div class="col-xs-3 ">
-  				<img src="img/bt_header_go_to_por_up_helpgen.png"> 
-  			</div>
-  		</nav>
-  	</header>
+    <div class="container">
+      <!-- Push Wrapper -->
+      <div class="mp-pusher row" id="mp-pusher">
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu">
+          <div class="mp-level usermenu">
+            <div class="col-xs-12 logo">
+              <img src="img/im_usermenu_logo.png" class="img-responsive">
+            </div>
+            <div class="col-xs-12 infouser">
+              <div class="media">
+                <div class="media-left">
+                  <img src="img/ic_usermenu_group.png" class="media-object">
+                </div>
+                <div class="media-body">
+                  <ul class="list-group">
+                    <li class="list-group-item">Daniela Rojas</li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> Nombre del grupo</li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-hourglass"></i> <span>85</span> <span>10</span> <span>12</span></li>
+                    <li class="list-group-item">
+                        <div class="col-xs-4">sdfsdf</div>
+                        <div class="col-xs-4">sdfsdf</div>
+                        <div class="col-xs-4">sdfsdf</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Lista de Opciones-->
+            <div class="col-xs-12 menuList">
+              <ul class="list-group">
+                <a href="#homenoreg" class="list-group-item">
+                  <i class="pull-right glyphicon glyphicon-menu-right"></i> Cras justo odio</a>
+                <a href="#" class="list-group-item">
+                  <i class="pull-right glyphicon glyphicon-menu-right"></i>Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Morbi leo risus</a>
+                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Vestibulum at eros</a>
+                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Vestibulum at eros</a>
+                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Vestibulum at eros</a>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </nav>
+        <!-- /mp-menu -->
 
-    <section id="main" class="container main"></section>
+        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
+          <div class="scroller-inner">
+            
+              <header class="container-fluid">
+                <nav class="row sup text-center">
+                  <div class="col-xs-3 ">
+                    <img id="trigger" src="img/bt_header_go_to_menu.png"> 
+                  </div>
+                  <div class="col-xs-6 ">
+                    <p class="row ">Loren Ipsum Loren Ipsum</p>
+                  </div>
+                  <div class="col-xs-3 ">
+                    <img src="img/bt_header_go_to_por_up_helpgen.png"> 
+                  </div>
+                </nav>
+              </header>
+
+              <section id="main" class="container-fluid main">
+
+              </section>
+
+          </div><!-- /scroller-inner -->
+        </div><!-- /scroller -->
+
+      </div><!-- /pusher -->
+    </div><!-- /container -->
 
   
     <!-- Pagina Home Game -->
@@ -195,19 +248,10 @@
       </footer>
       </div>
     </div>
-   <!--    
-    <script>
-      $(document).ready(function() {  
-              //add your other targets here
-           $(".carousel").swiperight(function() {  
-              $(this).carousel('prev');  
-              });  
-          //add your other targets here
-           $(".carousel").swipeleft(function() {  
-              $(this).carousel('next');  
-         });  
-      });  
+
+    <script type="text/javascript">
+
     </script>
-  -->
+
   </body>
 </html>
