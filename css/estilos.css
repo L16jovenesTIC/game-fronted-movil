@@ -6,6 +6,7 @@ body {
 	background-size: cover;
 	height: 100vh;
 }
+
 p{
 	color: #707070;
 	line-height: 1.2;
@@ -31,6 +32,23 @@ nav.sup p {
 
 footer {
 	margin-bottom: 20px;
+}
+
+
+body.loading #main{
+	display: none;
+}
+body.loading #animacionDado{
+	display: block;
+}
+
+#animacionDado {
+	display: none;
+}
+
+#animacionDado img{
+	margin-top: 20vh;
+	height: 60vh;
 }
 
 
@@ -85,10 +103,11 @@ footer {
 
 /* GLOBAL MAIN */
 
-.main {
+.main, .main section {
 	margin-top: 20px;
 }
 
+	/* Carousel */
 .main .carousel-indicators {
 	position: relative;
 }
@@ -100,6 +119,65 @@ footer {
 
 .main .carousel-indicators li.active{
 	background-color: grey;
+}
+
+	/* alert */
+
+.main .alert p{
+	color: white;
+
+}
+
+.main .alert-cultura {
+	background-color: #00c4f7;
+}
+
+.main .alert-educacion {
+	background-color: #bdd500;
+}
+
+.main .alert-historia {
+	background-color: #bf0047;
+}
+
+.main .alert-infraestructura {
+	background-color: #da0ab2;
+}
+
+.main .alert-misional {
+	background-color: #e79300;
+}
+
+	/* footer */
+.main footer .boton-categoria p{
+	position: absolute;
+	top: 10px;
+	right: 39%;
+	width: 50%;
+}
+
+.main footer .boton-categoria span{
+	position: absolute;
+	top: 9px;
+	right: 16%;
+}
+
+.coins {
+	background: url('../img/im_mygroup_less_coins_bg.png') center center no-repeat;
+	content: "";
+	display: block;
+	background-size: contain;
+	min-height: 40px;
+	position: relative;
+}
+.coins span {
+	position: absolute;
+	top:10px;
+	right: 50%;
+}
+.coins.more {
+	background: url('../img/im_mygroup_less_more_coins_bg.png') center center no-repeat;
+	background-size: contain;
 }
 
 /* Lista Mystery of Suall Timeline */
@@ -160,7 +238,7 @@ footer {
 }
 .selupz section{
 	margin-top: 30px;
-	margin-bottom: 20px;
+	--margin-bottom: 20px;
 	position: relative;
 	float: left;
 }
@@ -184,40 +262,13 @@ footer {
 	width: 50px;
 }
 
-/* Seleccion Reto */
-.selreto section{
-	margin-top: 20px;
-}
+/* Reto Suspendido */
 
-.selreto .alert-cultura {
-	background-color: #00c4f7;
-}
-
-.selreto .alert-educacion {
-	background-color: #bdd500;
-}
-
-.selreto .alert-historia {
-	background-color: #bf0047;
-}
-
-.selreto .alert-infraestructura {
-	background-color: #da0ab2;
-}
-
-.selreto .alert-misional {
-	background-color: #e79300;
-}
-
-.selreto footer .boton-categoria p{
-	position: absolute;
-	top: 10px;
-	right: 39%;
-	width: 50%;
-}
-
-.selreto footer .boton-categoria span{
-	position: absolute;
-	top: 9px;
-	right: 16%;
+.retoSusp .reloj {
+	height: 40px;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	text-align: center;
+	margin: 10px;
 }

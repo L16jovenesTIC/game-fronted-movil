@@ -1,11 +1,11 @@
-define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz'], function(Backbone, template){
+define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz', './vNuevoRetoUpz'], function(Backbone, template){
 
 	var selupz = Backbone.View.extend({
 		className:'row selupz',
 		events:{
-			'click header img:eq(0)': 'irListaRetos',
-			'click header img:eq(1)': 'irNuevoReto',
-			'click header img:eq(2)': 'irRankUpz',
+			'click .btn-lista': 'irListaRetos',
+			'click .btn-nuevoReto': 'irNuevoReto',
+			'click .btn-rank': 'irRankUpz',
 		},
 		irRankUpz: function(e) {
 			e.preventDefault()
@@ -20,6 +20,20 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			this.retos = new retosUpz()
 			this.$el.html(this.retos.render().el)
 			Base.app.navigate('#selupz/retos')
+		},
+		irNuevoReto: function(e) {
+			$('body').toggleClass('loading')
+			e.preventDefault()
+			var self = this
+			var nuevoReto = require('views/vNuevoRetoUpz')
+			this.nuevoReto = new nuevoReto()
+
+			setTimeout(function(){
+				self.$el.html(self.nuevoReto.render().el)
+				console.log('Entra timeout')
+				$('body').toggleClass('loading')			
+			}, 1000)
+			//Base.app.navigate('#selupz/nuevoReto')
 		},
 		initialize:function(){
 			//this.template = template

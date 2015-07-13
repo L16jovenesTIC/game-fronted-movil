@@ -9,6 +9,10 @@ define(function(require){
             "homenoreg": "rHomeNoReg",
             "homegame": "rHomeGame",
             "selupz": "rSelUPZ",
+            "retosup": "rRetoSuperado",
+            "retosusp": "rRetoSuspendido",
+            "retovali": "rRetoValidando",
+            "error": "rError",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
@@ -24,6 +28,7 @@ define(function(require){
                 this.main.remove()
                 this.mp._resetMenu()
             }
+            $('body').removeClass('loading')
             // Aqui el codigo adicional
             call.apply(this,args)
         },
@@ -54,6 +59,34 @@ define(function(require){
             $('#main').html(this.main.render().el)
             // Activa la opción de deslizar la galeria con gestos Touch
             require('utils/activaSliderTouch')()
+        },
+        rRetoSuperado: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vRetoSup')
+            this.main = new retoSup()
+            
+            $('#main').html(this.main.render().el)
+        },
+        rRetoSuspendido: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vRetoSusp')
+            this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
+        },
+        rRetoValidando: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vRetoVali')
+            this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
+        },
+        rError: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vErrorMain')
+            this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
         }
     });
 
