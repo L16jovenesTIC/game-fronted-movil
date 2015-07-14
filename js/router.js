@@ -13,6 +13,7 @@ define(function(require){
             "retosusp": "rRetoSuspendido",
             "retovali": "rRetoValidando",
             "error": "rError",
+            "reto": "rReto",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
@@ -20,7 +21,6 @@ define(function(require){
             // Inicia el menú lateral
             classie = require('mp/classie')
             this.mp = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
-            //debugger
         },
         //Metodo se ejecuta antes de entrar a cualquier controlador
         execute:function(call,args){
@@ -84,6 +84,13 @@ define(function(require){
         rError: function(){
             //this.intro = new vIntroMain({el:'#main'})
             var retoSup = require('views/vErrorMain')
+            this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
+        },
+        rReto: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vRetoMain')
             this.main = new retoSup()
 
             $('#main').html(this.main.render().el)

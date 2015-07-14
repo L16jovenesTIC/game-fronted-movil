@@ -1,10 +1,7 @@
 
 body {
-	background-image: url('../img/bg.png');
-	background-position: center center;
-	background-attachment: fixed !important;
+	background: url('../img/bg.png') center center no-repeat;
 	background-size: cover;
-	height: 100vh;
 }
 
 p{
@@ -122,10 +119,8 @@ body.loading #animacionDado{
 }
 
 	/* alert */
-
 .main .alert p{
 	color: white;
-
 }
 
 .main .alert-cultura {
@@ -271,4 +266,29 @@ body.loading #animacionDado{
 	padding: 10px;
 	text-align: center;
 	margin: 10px;
+}
+
+/* Reto Main */
+
+.retoMain header .col-xs-7 .alert-infraestructura{
+	margin-right: -10px;
+}
+
+.retoMain header .col-xs-12 {
+	margin-top: -15px;
+}
+
+.retoMain header img{
+	margin: 0 auto;
+}
+
+.retoMain header .alert{
+	padding: 5px;
+}
+
+.retoMain header .media-left{
+	border-right: solid 1px white;
+}
+.retoMain header .media-body p{
+	margin-left: 10px;
 }
