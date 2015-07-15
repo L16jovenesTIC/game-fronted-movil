@@ -1,12 +1,16 @@
-define(['backbone', 'text!tmpl/intro.html'], function(Backbone, template){
+define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, template, module){
 
 	var user = Backbone.Model.extend({
-		urlRoot:"/f",
+		//urlRoot: window.urlServidor || module.config().urlServer+"/user/?f=ver",
+		urlRoot: window.urlServidor + "/user/?f=ver",
+		initialize:function(){
+			
+		},
 		traeDatosFB: function(){
 			var self = this
 			// Recoge info para registrar usuario
 			console.log('Recolectando Informacion ....');
-			
+
 			FB.api('/me?fields=id,name,email,link,gender', function(response) {
 				self.set(response)
 			});

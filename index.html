@@ -54,7 +54,7 @@
                   <i class="pull-right glyphicon glyphicon-menu-right"></i>Timeline</a>
                 <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Formulario de inscripción</a>
                 <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Mi Grupo</a>
-                <a href="#" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Cómo Jugar</a>
+                <a href="#reto" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Cómo Jugar</a>
                 <a href="#retosusp" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Estadísticas</a>
                 <a href="#retosup" class="list-group-item"><i class="pull-right glyphicon glyphicon-menu-right"></i>Créditos</a>
               </ul>
@@ -66,8 +66,8 @@
 
         <div class="scroller"><!-- this is for emulating position fixed of the nav -->
           <div class="scroller-inner">
-            
-              <header class="container-fluid">
+
+              <header class="container-fluid" > 
                 <nav class="row sup text-center">
                   <div class="col-xs-3 ">
                     <img id="trigger" src="img/bt_header_go_to_menu.png"> 
@@ -94,44 +94,14 @@
     </div><!-- /container -->
 
     <script type="text/javascript">
-    // Carga SDK asynchronously
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    //Configura carga SDK de Facebook
-    // window.fbAsyncInit = function() {
-    //   FB.init({
-    //     appId      : 750521908401740,
-    //     //cookie     : true,  // enable cookies to allow the server to access the session
-    //     xfbml      : true,  // parse social plugins on this page
-    //     version    : 'v2.3' // use version 2.2
-    //   });
-
-    //   FB.getLoginStatus(function(response) {
-    //       console.log("llamada inicial a FB");
-    //       console.log(response);
-    //       Base.app.status = response.status;
-    //   });
-
-    // };
-
-
-    /*Controlador del boton de login
-    $('.btnfblog').click(function(event) {
-      event.preventDefault();
-      FB.login(function(response) {
-        statusChangeCallback(response); // Función de callback
-      }, {
-        scope: 'public_profile,email,user_friends',
-        return_scopes: true
-      })
-    });
-*/
+      // Carga SDK asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "http://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
 
     </script>
 

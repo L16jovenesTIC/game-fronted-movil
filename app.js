@@ -7,8 +7,13 @@
 // except for 'app' ones, which are in a sibling
 // directory.
 
+window.urlServidor = 'http://backendsuall.elasticbeanstalk.com';
+
 requirejs.config({
     baseUrl: 'js/lib',
+    config:{
+        'models/mUser':{ urlServer: urlServidor }
+    },
     shim:{ 
     	'backbone': {
             //These script dependencies should be loaded before loading
@@ -36,46 +41,37 @@ requirejs.config({
         tmpl: '../tmpl',
         utils: '../utils',
         mp: 'pushmenu',
+        puzzle: 'Sliding Puzzle_files',
+
     },
     waitSeconds:0
 });
 
-window.fbAsyncInit = function() {
 
-        FB.init({
-        appId      : 750521908401740,
-        //cookie     : true,  // enable cookies to allow the server to access the session
-        xfbml      : true,  // parse social plugins on this page
-        version    : 'v2.3' // use version 2.2
-      });
+    // Start loading the main app file. Put all of
+    // your application logic in there.
+    requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser'], function(Backbone){
 
-      FB.getLoginStatus(function(response) {
-          console.log("llamada inicial a FB");
-          console.log(response);
+        var Base = {
+            Views : {},
+            Models : {},
+            Collections : {},
+            Services: {},
+            Router :{},
+            Utils:{}
+        };
 
-        // Start loading the main app file. Put all of
-        // your application logic in there.
-        requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser'], function(Backbone){
+        window.Base = Base;
+        window.Resources = true;
+        //Base.urlServidor = "http://backendsuall.elasticbeanstalk.com/";
 
-            var Base = {
-                Views : {},
-                Models : {},
-                Collections : {},
-                Services: {},
-                Router :{},
-                Utils:{}
-            };
+        var usersuall = require('models/mUser')
 
-            window.Base = Base;
-            window.Resources = true;
-            var urlServidor = "localhost";
-            var usersuall = require('models/mUser')
+        // Creamos el modelo de Usuario
+        Base.status = new usersuall({status:'connected'});
 
-            Base.status = new usersuall(response);
-
-            var Router = require('router')
-            //Base.intro = require('views')
-            Base.app = new Router()
-        });
-      });
-}
+        var Router = require('router')
+        //Base.intro = require('views')
+        Base.app = new Router()
+    });
+      

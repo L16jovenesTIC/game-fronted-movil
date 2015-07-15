@@ -9,7 +9,7 @@ define(['backbone', 'text!tmpl/intro.html'], function(Backbone, template){
 			e.preventDefault()
 			
 			if(Base.status.get('status') === "connected"){
-				Base.status.traeDatosFB()
+				//Base.status.traeDatosFB()
 				Base.app.navigate('#homegame', {trigger:true})
 			} else {
 				Base.app.navigate('#homenoreg', {trigger:true})
@@ -17,7 +17,6 @@ define(['backbone', 'text!tmpl/intro.html'], function(Backbone, template){
 		},
 		initialize:function(){
 			//this.template = template
-			this.usersuall = ""
 		},
 		render:function(){
 			//this.$el.html(this.template)

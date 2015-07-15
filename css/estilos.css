@@ -39,6 +39,12 @@ body.loading #animacionDado{
 	display: block;
 }
 
+.scroller-inner>header.affix, .navbar.affix {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+
 #animacionDado {
 	display: none;
 }
@@ -100,7 +106,7 @@ body.loading #animacionDado{
 
 /* GLOBAL MAIN */
 
-.main, .main section {
+.main {
 	margin-top: 20px;
 }
 
@@ -291,4 +297,21 @@ body.loading #animacionDado{
 }
 .retoMain header .media-body p{
 	margin-left: 10px;
+}
+
+.retoMain section{
+	margin-bottom: 10px;
+}
+
+.retoMain section .areaJuego{
+	min-height: 200px;
+}
+
+.retoMain section button{
+	width: 100%;
+	padding: 10px;
+}
+
+.retoMain section canvas{
+	width: 100%;
 }
