@@ -1,4 +1,4 @@
-define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
+define(['backbone', 'text!tmpl/reto.html', 'views/vPuzzle'], function(Backbone, template, puzzle){
 
 	var retoSup = Backbone.View.extend({
 		className:'retoMain',
@@ -11,10 +11,12 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		},
 		initialize:function(){
 			//this.template = template
+			p = new puzzle()
 		}, 
 		render:function(){
 			//this.$el.html(this.template)
 			this.$el.html(template)
+			this.$('.areaJuego').html(p.render().el)
 			return this
 		}
 	})

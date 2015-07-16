@@ -37,11 +37,49 @@ define(function (){
     //   drawTiles();
     // };
 
-    document.getElementById('puzzle').onclick = function(e) {
-      clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
-      clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSize) - tileCount;
-      //console.log(distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y))
+    function getClickPosition(e) {
+      var parentPosition = getPosition(e.currentTarget);
+      var xPosition = e.clientX - parentPosition.x;
+      var yPosition = e.clientY - parentPosition.y;
+      console.log(xPosition+' - '+yPosition)
 
+    }
+     
+    function getPosition(element) {
+        var xPosition = 0;
+        var yPosition = 0;
+          
+        while (element) {
+            xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+            yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+            element = element.offsetParent;
+        }
+        return { x: xPosition, y: yPosition };
+    }
+
+    // document.getElementById('puzzle').onclick = function(e) {
+    //   clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
+    //   clickLoc.y = Math.floor((e.pageY - this.offsetTop ) / tileSize);
+    //   //console.log(distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y))
+    //   console.log('eje X: '+e.pageX +' - '+this.offsetLeft)
+    //   console.log('eje Y: '+e.pageY +' - '+e.screenY +' - '+e.offsetY+' - '+this.offsetTop)
+    //   console.log(clickLoc)
+    //   console.log(emptyLoc)
+
+    //   //getClickPosition(e)
+
+    //   if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
+    //     slideTile(emptyLoc, clickLoc);
+    //     drawTiles();
+    //   }
+    //   if (solved) {
+    //     setTimeout(function() {alert("You solved it!");}, 500);
+    //   }
+    // };
+
+    document.getElementById('puzzle').onclick = function(e) {
+      clickLoc.x = Math.floor(e.offsetX / tileSize);
+      clickLoc.y = Math.floor(e.offsetY / tileSize);
       if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
         slideTile(emptyLoc, clickLoc);
         drawTiles();
@@ -49,7 +87,8 @@ define(function (){
       if (solved) {
         setTimeout(function() {alert("You solved it!");}, 500);
       }
-    };
+
+    }
 
     function setBoard() {
       boardParts = new Array(tileCount);

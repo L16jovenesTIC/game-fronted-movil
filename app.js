@@ -50,7 +50,7 @@ requirejs.config({
 
     // Start loading the main app file. Put all of
     // your application logic in there.
-    requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser'], function(Backbone){
+    requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser', 'views/vPuzzle'], function(Backbone){
 
         var Base = {
             Views : {},

@@ -15,7 +15,8 @@ button {
 }
 
 nav.sup {
-	margin-top: 30px; 
+	padding: 18px 0px 6px;
+
 }
 
 nav.sup img {
@@ -39,10 +40,13 @@ body.loading #animacionDado{
 	display: block;
 }
 
-.scroller-inner>header.affix, .navbar.affix {
-    position: fixed;
-    top: 0px;
-    width: 100%;
+.scroller-inner>header {
+	height: 10vh;
+}
+
+.scroller-inner>section {
+	height: 90vh;
+	overflow-y: scroll;
 }
 
 #animacionDado {
@@ -107,7 +111,7 @@ body.loading #animacionDado{
 /* GLOBAL MAIN */
 
 .main {
-	margin-top: 20px;
+	padding-top: 10px;
 }
 
 	/* Carousel */
@@ -304,8 +308,24 @@ body.loading #animacionDado{
 }
 
 .retoMain section .areaJuego{
-	min-height: 200px;
+	min-height: 500px;
 }
+.retoMain section .areaJuego{
+	--background: url('../img/img_20150318_150947.jpg') top left;
+}
+
+.retoMain section .areaJuego .piece{
+	position: absolute;
+	background: url('../img/img_20150318_150947.jpg');
+	background-position-x: -100px;
+	background-position-y: -100px;
+	width: 100px;
+	height: 100px;
+}
+.retoMain section .areaJuego .piece.hueco{
+	display: none;
+}
+
 
 .retoMain section button{
 	width: 100%;

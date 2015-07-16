@@ -94,8 +94,8 @@ define(function(require){
             this.main = new retoSup()
 
             $('#main').html(this.main.render().el)
-            puzzle = require('puzzle/sliding')
-            puzzle()
+            //puzzle = require('puzzle/sliding')
+            //puzzle()
         }
     });
 
