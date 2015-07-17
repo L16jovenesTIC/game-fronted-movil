@@ -308,24 +308,25 @@ body.loading #animacionDado{
 }
 
 .retoMain section .areaJuego{
-	min-height: 500px;
+	--min-height: 500px;
 }
-.retoMain section .areaJuego{
-	--background: url('../img/img_20150318_150947.jpg') top left;
+
+.retoMain section .areaJuego .puzzle{
+	  position: relative;
+	  margin: 0 auto;
+	  display: block;
+	  margin-bottom: 20px;
 }
 
 .retoMain section .areaJuego .piece{
 	position: absolute;
-	background: url('../img/img_20150318_150947.jpg');
-	background-position-x: -100px;
-	background-position-y: -100px;
-	width: 100px;
-	height: 100px;
+	background: url('../img/2015-05-1311.13.23.jpg');
+	--width: 70px;
+	--height: 70px;
 }
 .retoMain section .areaJuego .piece.hueco{
 	display: none;
 }
-
 
 .retoMain section button{
 	width: 100%;

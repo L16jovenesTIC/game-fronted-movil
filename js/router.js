@@ -14,6 +14,7 @@ define(function(require){
             "retovali": "rRetoValidando",
             "error": "rError",
             "reto": "rReto",
+            "newgroup": "rNuevoGrupo",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
@@ -91,6 +92,15 @@ define(function(require){
         rReto: function(){
             //this.intro = new vIntroMain({el:'#main'})
             var retoSup = require('views/vRetoMain')
+            this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
+            //puzzle = require('puzzle/sliding')
+            //puzzle()
+        },
+        rNuevoGrupo: function(){
+            //this.intro = new vIntroMain({el:'#main'})
+            var retoSup = require('views/vNuevoGrupoMain')
             this.main = new retoSup()
 
             $('#main').html(this.main.render().el)

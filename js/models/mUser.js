@@ -2,9 +2,57 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 
 	var user = Backbone.Model.extend({
 		//urlRoot: window.urlServidor || module.config().urlServer+"/user/?f=ver",
-		urlRoot: window.urlServidor + "/user/?f=ver",
-		initialize:function(){
+		urlRoot: window.urlServidor,
+		localStorage: new Store("user"),
+		defaults:{
+			nom:'pruebaPing',
+			keyapp:'50ed88e8e24ecca389f99ba00491ab294937e941cf891bacf951bd6217c6ba59',
+			email:'trecetp@gmail.com',
+			uid:'10153249124070549',
+		},
+		url:function(opt){
 			
+			if(this.get('type')==='ping'){ 
+				return this.urlRoot+'?f=ping';
+			}
+			else if(this.get('type')==='pingKey'){ 
+				return this.urlRoot+'?f=ping&k='+this.get('keyapp'); 
+			}
+			else if(this.get('type')==='ver'){ 
+				return this.urlRoot+'/user/?f=ver&uid='+this.get('uid')+'&email='+this.get('email')+'&k='+this.get('keyapp')+'&toquen='+this.get('token'); 
+			}
+			else{ return this.urlRoot; } 
+
+		},
+		initialize:function(){
+			var self = this 
+			this.ping()
+			setInterval(function(){self.ping()}, 60000)
+			
+		},
+		verificaUser: function(){
+			this.set({type:'ver'})
+			//this.urlRoot += '&nom='+this.get('nom')
+			this.fetch()
+
+		},
+		ping: function(){
+			this.set({type:'ping'})
+			//this.urlRoot += '&nom='+this.get('nom')
+			this.fetch().done(function(resp){
+				console.log(resp)
+			})
+
+		},
+		pingKey: function(){
+			var self = this
+			this.set({type:'pingKey'})
+			//this.urlRoot += '&nom='+this.get('nom')
+			this.fetch().done(function(resp){
+				self.set({token: resp.dat.token})
+				console.log(resp)
+			})
+
 		},
 		traeDatosFB: function(){
 			var self = this
