@@ -9,11 +9,6 @@ p{
 	line-height: 1.2;
 }
 
-button {
-	color:white !important;
-	background-color:#17bdd0 !important;
-}
-
 nav.sup {
 	padding: 18px 0px 6px;
 
@@ -54,6 +49,8 @@ body.loading #animacionDado{
 }
 
 #animacionDado img{
+	margin-top: 20%;
+	height: 60%;
 	margin-top: 20vh;
 	height: 60vh;
 }
@@ -110,6 +107,12 @@ body.loading #animacionDado{
 
 /* GLOBAL MAIN */
 
+
+.main button {
+	color:white !important;
+	background-color:#17bdd0 !important;
+}
+
 .main {
 	padding-top: 10px;
 }
@@ -128,8 +131,29 @@ body.loading #animacionDado{
 	background-color: grey;
 }
 
+	/* Modal */
+
+#modal .modal-dialog {
+	margin-top: 20%;
+
+}
+#modal .modal-content {
+	background-color: #00c4f7;
+	color: white;
+
+}
+#modal .modal-content .btn-close-modal {
+	width: 25px;
+	color: white;
+}
+#modal .modal-header button {
+	background-color: transparent;
+	color: white;
+	opacity: 1;
+}
+
 	/* alert */
-.main .alert p{
+.main .alert p, #modal p{
 	color: white;
 }
 

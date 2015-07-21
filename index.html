@@ -76,7 +76,7 @@
                     <p class="row ">Loren Ipsum Loren Ipsum</p>
                   </div>
                   <div class="col-xs-3 ">
-                    <img src="img/bt_header_go_to_por_up_helpgen.png"> 
+                    <img data-toggle="modal" data-target="#modal" src="img/bt_header_go_to_por_up_helpgen.png"> 
                   </div>
                 </nav>
               </header>
@@ -93,15 +93,38 @@
       </div><!-- /pusher -->
     </div><!-- /container -->
 
+
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+    <button id="btn-modal" class="hidden" data-toggle="modal" data-target="#modal"></button>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content col-xs-10 col-xs-offset-1">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <img class="btn-close-modal" src="img/bt_pop_up_exit.png">
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <img src="img/im_error.png" class="img-responsive">
+            <br>
+            <p>Mensaje de redireccion a la página donde tiene que contestar la encuenta</p>
+            <a href="http://suall.puentearandaestic.com" target='_blank'> Encuesta </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="text/javascript">
       // Carga SDK asynchronously
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "http://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+      // (function(d, s, id) {
+      //   var js, fjs = d.getElementsByTagName(s)[0];
+      //   if (d.getElementById(id)) return;
+      //   js = d.createElement(s); js.id = id;
+      //   js.src = "http://connect.facebook.net/en_US/sdk.js";
+      //   fjs.parentNode.insertBefore(js, fjs);
+      // }(document, 'script', 'facebook-jssdk'));
 
     </script>
 
