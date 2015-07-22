@@ -68,7 +68,9 @@ requirejs.config({
         var usersuall = require('models/mUser')
 
         // Creamos el modelo de Usuario
-        Base.status = new usersuall({status:'connected'});
+        var session = localStorage.getItem('session');
+        //var session = (localStorage.getItem('session'))?localStorage.getItem('session'):'{}';
+        Base.status = new usersuall(JSON.parse(session));
 
         var Router = require('router')
         //Base.intro = require('views')

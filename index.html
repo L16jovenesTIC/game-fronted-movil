@@ -29,13 +29,15 @@
             <div class="col-xs-12 infouser">
               <div class="media">
                 <div class="media-left">
-                  <img src="img/ic_usermenu_group.png" class="media-object">
+                  <img src="img/ic_usermenu_group.png" class="media-object picsqr">
                 </div>
                 <div class="media-body">
                   <ul class="list-group">
-                    <li class="list-group-item">Daniela Rojas</li>
-                    <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> Nombre del grupo</li>
-                    <li class="list-group-item"><i class="glyphicon glyphicon-hourglass"></i> <span>85</span> <span>10</span> <span>12</span></li>
+                    <li class="list-group-item nombre">Daniela Rojas</li>
+                    <li class="list-group-item clan"><i class="glyphicon glyphicon-user"></i> Nombre del grupo</li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-hourglass"></i> 
+                      <span>85</span> <span>10</span> <span>12</span>
+                    </li>
                     <li class="list-group-item">
                         <div class="col-xs-4">sdfsdf</div>
                         <div class="col-xs-4">sdfsdf</div>
@@ -125,6 +127,14 @@
       //   js.src = "http://connect.facebook.net/en_US/sdk.js";
       //   fjs.parentNode.insertBefore(js, fjs);
       // }(document, 'script', 'facebook-jssdk'));
+
+      function supports_html5_storage() {
+        try {
+          return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+          return false;
+        }
+      }
 
     </script>
 

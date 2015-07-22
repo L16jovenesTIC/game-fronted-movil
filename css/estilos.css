@@ -88,6 +88,9 @@ body.loading #animacionDado{
 
 .usermenu .infouser img {
 	width: 100px;
+	border: solid 2px #fff;
+	border-radius: 10px;
+	margin: 5px;
 }
 
 .usermenu .infouser .list-group li:last-child{

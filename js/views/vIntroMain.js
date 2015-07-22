@@ -7,12 +7,13 @@ define(['backbone', 'text!tmpl/intro.html'], function(Backbone, template){
 		},
 		boton: function(e) {
 			e.preventDefault()
+			var status = Base.status.get('status')
 			
-			if(Base.status.get('status') === "connected"){
+			if(status && status === "connected"){
 				//Base.status.traeDatosFB()
 				Base.app.navigate('#homegame', {trigger:true})
 			} else {
-				Base.app.navigate('#homenoreg', {trigger:true})
+				Base.app.navigate('#newgroup', {trigger:true})
 			}
 		},
 		initialize:function(){

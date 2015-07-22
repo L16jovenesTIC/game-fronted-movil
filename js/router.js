@@ -34,7 +34,13 @@ define(function(require){
             call.apply(this,args)
         },
         rIntro: function(){
-            //this.intro = new vIntroMain({el:'#main'})
+            if(!supports_html5_storage()){
+                $('#main').html('NO SOPORTA EL LOCALSTORAGE')
+                //$('#main').append(JSON.stringify(Base.status.toJSON()))
+                $('#main').append(localStorage.getItem('session')+' - '+localStorage.length)
+                return false
+            }
+
             var intro = require('views/vIntroMain')
             this.main = new intro()
             $('#main').html(this.main.render().el)
