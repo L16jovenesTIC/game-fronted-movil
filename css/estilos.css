@@ -27,12 +27,16 @@ footer {
 	margin-bottom: 20px;
 }
 
+#main, #animacionDado {
+	float: left;
+}
 
 body.loading #main{
 	display: none;
 }
 body.loading #animacionDado{
 	display: block;
+	
 }
 
 .scroller-inner>header {
@@ -191,7 +195,7 @@ body.loading #animacionDado{
 .main footer .boton-categoria span{
 	position: absolute;
 	top: 9px;
-	right: 16%;
+	right: 20%;
 }
 
 .coins {
@@ -362,4 +366,14 @@ body.loading #animacionDado{
 
 .retoMain section canvas{
 	width: 100%;
+}
+
+.retoCompletar .input-completar {
+	width: 100px;
+	background-color: transparent;
+	border: none;
+	border-bottom: dotted 1px #666;
+	text-align: center;
+	font-style: oblique;
+	font-weight: bold;
 }

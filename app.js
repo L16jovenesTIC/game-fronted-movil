@@ -50,7 +50,7 @@ requirejs.config({
 
     // Start loading the main app file. Put all of
     // your application logic in there.
-    requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser', 'views/vPuzzle'], function(Backbone){
+    requirejs(['backbone', 'router', 'mp/mlpushmenu', 'models/mUser'], function(Backbone){
 
         var Base = {
             Views : {},
@@ -64,7 +64,6 @@ requirejs.config({
         window.Base = Base;
         window.Resources = true;
         //Base.urlServidor = "http://backendsuall.elasticbeanstalk.com/";
-
         var usersuall = require('models/mUser')
 
         // Creamos el modelo de Usuario

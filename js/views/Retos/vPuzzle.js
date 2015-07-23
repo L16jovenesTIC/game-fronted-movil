@@ -59,7 +59,7 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 
 
 	var puzzle = Backbone.View.extend({
-		className:'puzzle row',
+		className:'puzzle',
 		events:{
 			'click header>img': 'boton',
 			'click .piece': 'boton',

@@ -1,7 +1,7 @@
-define(['backbone', 'text!tmpl/reto.html', 'views/vPuzzle'], function(Backbone, template, puzzle){
+define(['backbone', 'text!tmpl/reto.html', 'views/Retos/vPuzzle', 'views/Retos/vRetoCompletar'], function(Backbone, template, puzzle, completar){
 
 	var retoSup = Backbone.View.extend({
-		className:'retoMain',
+		className:'retoMain row',
 		events:{
 			'click header>img': 'boton'
 		},
@@ -12,6 +12,7 @@ define(['backbone', 'text!tmpl/reto.html', 'views/vPuzzle'], function(Backbone, 
 		initialize:function(){
 			//this.template = template
 			p = new puzzle()
+			//p = new completar()
 		}, 
 		render:function(){
 			//this.$el.html(this.template)

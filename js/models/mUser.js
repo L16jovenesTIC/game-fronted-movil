@@ -25,6 +25,10 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 				var info = this.get('info')
 				return this.urlRoot+'/user/?f=ver&uid='+info.uid+'&email='+this.get('email')+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
 			}
+			else if(this.get('type')==='clan'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/clan/?f=inf&uid='+info.uid+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
+			}
 			else{ return this.urlRoot; } 
 
 		},
@@ -92,9 +96,17 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 			var self = this
 			this.set({type:'ver'})
 			//this.urlRoot += '&nom='+this.get('nom')
-			this.fetch().done(function(){
+			this.fetch().done(function(data){
 				self.set({info:data.dat})
 				self.saveLocal()
+			})
+		},
+		infoClan: function(){
+			var self = this
+			this.set({type:'clan'})
+			//this.urlRoot += '&nom='+this.get('nom')
+			this.fetch().done(function(data){
+				console.log(data)
 			})
 		},
 		saveLocal:function(){
