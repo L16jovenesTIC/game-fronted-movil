@@ -224,14 +224,14 @@ body.loading #animacionDado{
 	padding-top: 0px;
 }
 
-.tl-mos li:after {
+.tl-mos li:after, .retoSelMul li:after, .retoRelacionar li:after {
 	background: url('../img/im_mygroup-homegame_divider.png') center center no-repeat;
 	content: "";
 	display: block;
 	height: 5px;
 }
 
-.tl-mos li:last-child:after {
+.tl-mos li:last-child:after, .retoSelMul li:last-child:after, .retoRelacionar li:last-child:after {
 	display: none;
 }
 
@@ -378,24 +378,33 @@ body.loading #animacionDado{
 	font-weight: bold;
 }
 
-.retoSelMul ul {
+.retoSelMul ul, .retoRelacionar ul {
 	padding:0
 }
 
-.retoSelMul ul li{
+.retoSelMul ul li,.retoRelacionar ul li{
 	margin:2px;
 	padding:0;
 	background-color: transparent;
 	border: none;
 }
-.retoSelMul ul li p{
+.retoSelMul ul li .input-group, .retoRelacionar ul li .input-group{
+	padding: 5px;
+}
+.retoSelMul ul li p,.retoRelacionar ul li p{
 	padding: 2px 10px;
 	margin: 0;
 }
-.retoSelMul ul li span:first-child{
-	border: 1px solid #ccc;
+.retoSelMul ul li span:first-child, .retoRelacionar ul li span{
 	padding: 6px 10px;
+	border: 1px solid #ccc ! important;
+	border-radius: 5px !important
 }
+
+.retoRelacionar ul li span:last-child img{
+	width: 20px;
+}
+
 .retoSelMul ul li span:last-child{
 	background-color: transparent;
 	border: none;
@@ -404,4 +413,9 @@ body.loading #animacionDado{
 	width: 20px;
 	height: 20px;
 	background-color: white;
+}
+
+.retoRelacionar ul li span:last-child {
+	color: 
+
 }

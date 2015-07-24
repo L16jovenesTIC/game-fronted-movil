@@ -2,8 +2,9 @@ define(['backbone', 'text!tmpl/reto.html',
 	'views/Retos/vPuzzle', 
 	'views/Retos/vRetoCompletar', 
 	'views/Retos/vRetoGeo', 
-	'views/Retos/vRetoSelMul'], 
-function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple){
+	'views/Retos/vRetoSelMul', 
+	'views/Retos/vRetoRelacionar'], 
+function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, relacionar){
 
 	var retoSup = Backbone.View.extend({
 		className:'retoMain row',
@@ -16,10 +17,11 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple){
 		},
 		initialize:function(){
 			//this.template = template
-			//p = new puzzle()
+			p = new puzzle()
 			//p = new completar()
 			//p = new geolocalizador()
-			p = new selecMultiple()
+			//p = new selecMultiple()
+			//p = new relacionar()
 		}, 
 		render:function(){
 			//this.$el.html(this.template)

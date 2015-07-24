@@ -143,12 +143,31 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 			return template({col:data})
 		},
 		render:function(){
-			var html = this.template(p.collection.models)
+			var html = this.template(this.collection.models)
 			//this.$el.html(this.template)
 			this.$el.html(html).css(this.style)
 			return this
 		}
 	})
 
-	return puzzle
+	var puzzleContent = Backbone.View.extend({
+		className:'puzzleContent',
+		events:{
+			'click button:eq(0)': 'enviarRespuesta'
+		},
+		enviarRespuesta:function(e){
+			e.preventDefault()
+			console.log('envia la respuesta de la seleccion')
+		},
+		initialize:function(){
+			this.puzzle = new puzzle()
+		},
+		render: function(){
+			this.$el.html(this.puzzle.render().el)
+			this.$el.append('<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>')
+			return this
+		}
+	})
+
+	return puzzleContent
 })
