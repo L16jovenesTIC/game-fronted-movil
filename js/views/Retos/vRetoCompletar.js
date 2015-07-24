@@ -1,4 +1,4 @@
-define(['backbone', 'text!tmpl/nuevoGrupo.html'], function(Backbone, template){
+define(['backbone'], function(Backbone){
 
 	var ng = Backbone.View.extend({
 		className:'retoCompletar col-xs-12',
@@ -27,7 +27,6 @@ define(['backbone', 'text!tmpl/nuevoGrupo.html'], function(Backbone, template){
 			return str;
 		},
 		render:function(){
-			//this.$el.html(this.template)
 			this.$el.html(this.template())
 			//this.$('.areaJuego').html(p.render().el)
 			return this

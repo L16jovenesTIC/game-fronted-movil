@@ -377,3 +377,31 @@ body.loading #animacionDado{
 	font-style: oblique;
 	font-weight: bold;
 }
+
+.retoSelMul ul {
+	padding:0
+}
+
+.retoSelMul ul li{
+	margin:2px;
+	padding:0;
+	background-color: transparent;
+	border: none;
+}
+.retoSelMul ul li p{
+	padding: 2px 10px;
+	margin: 0;
+}
+.retoSelMul ul li span:first-child{
+	border: 1px solid #ccc;
+	padding: 6px 10px;
+}
+.retoSelMul ul li span:last-child{
+	background-color: transparent;
+	border: none;
+}
+.retoSelMul ul li span:last-child input{
+	width: 20px;
+	height: 20px;
+	background-color: white;
+}
