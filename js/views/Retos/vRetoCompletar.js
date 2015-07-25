@@ -3,12 +3,11 @@ define(['backbone'], function(Backbone){
 	var ng = Backbone.View.extend({
 		className:'retoCompletar col-xs-12',
 		events:{
-			'click section button': 'boton'
+			'click button:eq(0)': 'enviarRespuesta'
 		},
-		boton: function(e) {
+		enviarRespuesta: function(e) {
 			e.preventDefault()
-			var dat = this.$('form').serialize()
-			Base.status.regEquipo(dat)
+			console.log('enviando respuesta')
 			//Base.app.navigate('#selupz', {trigger:true})
 		},
 		initialize:function(){
@@ -23,6 +22,7 @@ define(['backbone'], function(Backbone){
 				str += item+'<input type="text" class="input-completar" name="palabra['+i+']">'
 			})
 			str += '</p></form>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
 
 			return str;
 		},

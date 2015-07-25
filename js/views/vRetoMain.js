@@ -17,8 +17,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, r
 		},
 		initialize:function(){
 			//this.template = template
-			p = new puzzle()
-			//p = new completar()
+			//p = new puzzle()
+			p = new completar()
 			//p = new geolocalizador()
 			//p = new selecMultiple()
 			//p = new relacionar()
