@@ -13,7 +13,6 @@ define(function(require){
             "retosusp": "rRetoSuspendido",
             "retovali": "rRetoValidando",
             "error": "rError",
-            "reto": "rReto",
             "newgroup": "rNuevoGrupo",
         },
         initialize: function (){
@@ -94,15 +93,6 @@ define(function(require){
             this.main = new retoSup()
 
             $('#main').html(this.main.render().el)
-        },
-        rReto: function(){
-            //this.intro = new vIntroMain({el:'#main'})
-            var retoSup = require('views/vRetoMain')
-            this.main = new retoSup()
-
-            $('#main').html(this.main.render().el)
-            //puzzle = require('puzzle/sliding')
-            //puzzle()
         },
         rNuevoGrupo: function(){
             //this.intro = new vIntroMain({el:'#main'})

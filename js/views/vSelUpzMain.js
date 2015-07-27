@@ -6,6 +6,10 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			'click .btn-lista': 'irListaRetos',
 			'click .btn-nuevoReto': 'irNuevoReto',
 			'click .btn-rank': 'irRankUpz',
+			'slide.bs.carousel #carousel-selupz': 'cambioUpz',
+		},
+		cambioUpz:function(e){
+			$(e.target).find('.carousel-inner .item.active').index()
 		},
 		irRankUpz: function(e) {
 			e.preventDefault()
@@ -44,6 +48,5 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			return this
 		}
 	})
-
 	return selupz
 })

@@ -269,10 +269,10 @@ body.loading #animacionDado{
 }
 
 /* Seleccion UPZ */
-.selupz header{
+.selupz>header{
 	margin-top: 20px;
 }
-.selupz section{
+.selupz>section{
 	margin-top: 30px;
 	--margin-bottom: 20px;
 	position: relative;

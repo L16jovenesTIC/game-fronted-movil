@@ -57,7 +57,6 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		}
 	})
 
-
 	var puzzle = Backbone.View.extend({
 		className:'puzzle',
 		events:{
