@@ -10,11 +10,18 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 	var retoSup = Backbone.View.extend({
 		className:'retoMain',
 		events:{
-			'click header>img': 'boton'
+			'click header>img': 'boton',
+			'click .boton-categoria': 'cancelarReto'
 		},
 		boton: function(e) {
 			e.preventDefault()
 			//Base.app.navigate('#selupz', {trigger:true})
+		},
+		cancelarReto:function(e){
+			e.preventDefault()
+			console.log('cancelar reto')
+			Base.app.vModal.modalCancelarReto()
+			Base.app.vModal.$el.modal('show')
 		},
 		initialize:function(){
 			//this.template = template

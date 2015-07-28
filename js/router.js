@@ -21,6 +21,9 @@ define(function(require){
             // Inicia el menú lateral
             classie = require('mp/classie')
             this.mp = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+            var alertas = require('views/vModal')
+            this.vModal = new alertas()
+            this.vModal.render()
         },
         //Metodo se ejecuta antes de entrar a cualquier controlador
         execute:function(call,args){

@@ -158,6 +158,13 @@ body.loading #animacionDado{
 	color: white;
 	opacity: 1;
 }
+#modal .modal-body {
+}
+#modal .modal-body button{
+	width: 100%;
+	background-color: #fad400;
+	color: #777;
+}
 
 	/* alert */
 .main .alert p, #modal p{
@@ -210,6 +217,7 @@ body.loading #animacionDado{
 	position: absolute;
 	top:10px;
 	right: 50%;
+	color: black;
 }
 .coins.more {
 	background: url('../img/im_mygroup_less_more_coins_bg.png') center center no-repeat;
