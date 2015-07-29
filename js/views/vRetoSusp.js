@@ -3,11 +3,12 @@ define(['backbone', 'text!tmpl/retoSuspendido.html'], function(Backbone, templat
 	var retoSus = Backbone.View.extend({
 		className:'retoSusp',
 		events:{
-			'click header>img': 'boton'
+			'click .activarReto': 'activarReto'
 		},
-		boton: function(e) {
+		activarReto: function(e) {
 			e.preventDefault()
-			//Base.app.navigate('#selupz', {trigger:true})
+			Base.app.vModal.modalActivarReto()
+			Base.app.vModal.$el.modal('show')
 		},
 		initialize:function(){
 			//this.template = template

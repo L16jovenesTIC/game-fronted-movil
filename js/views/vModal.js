@@ -4,9 +4,11 @@ define(['backbone'], function(Backbone){
 		el:'#modal',
 		events:{
 			'click .cancel':'cerrarModal',
-			'show.bs.modal ':'validaModal'
+			'show.bs.modal ':'validaModal',
+			'click .box-activarReto>div':'boxActivarRetoCambio',
 		},
 		validaModal:function(e){
+			// Si tiene esta opcion es porq se hace click desde el menú superior
 			if(e.relatedTarget){
 				this.initialize()
 			}
@@ -14,6 +16,13 @@ define(['backbone'], function(Backbone){
 		cerrarModal:function(e){
 			e.preventDefault()
 			this.$el.modal('hide')
+		},
+		boxActivarRetoCambio:function(e){
+			e.preventDefault()
+			if(!$(e.target).parents('.active').length && !$(e.target).hasClass('active')){
+				var $cont = $(e.target).parents('.box-activarReto')
+				$cont.children().toggleClass('active')
+			}
 		},
 		initialize:function(){
 			this.title = "Error"
@@ -23,12 +32,19 @@ define(['backbone'], function(Backbone){
 		}, 
 		modalCambiarCat:function(){
 			this.title = "Cambiar Categoria"
-			this.body = '<p class="text-center"> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		modalCancelarReto:function(){
 			this.title = "Cancelar Reto"
-			this.body = '<p class="text-center"> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
+			this.render()
+		},
+		modalActivarReto:function(){
+			this.title = "Activar Reto"
+			this.body = '<p> Elige una de las siguientes opcciones: </p>'+
+						'<div class="box-activarReto"><div class="col-xs-6 active"><p>Temporal</p><div class="coins"><span>10</span></div></div><div class="col-xs-6"><p>Permanente</p><div class="coins more"><span>100</span></div></div></div>'+
+						'<div class="col-xs-6"><button class="btn btn-default cancel">Cancelar</button></div><div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		render:function(){

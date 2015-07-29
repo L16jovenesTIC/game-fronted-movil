@@ -158,8 +158,15 @@ body.loading #animacionDado{
 	color: white;
 	opacity: 1;
 }
-#modal .modal-body {
+#modal .modal-body .box-activarReto div{
+	padding: 10px 0;
+	margin-bottom: 5px;
 }
+#modal .modal-body .box-activarReto div.active{
+	background-color: rgba(0, 121, 150, 0.7);
+	border-radius: 7px;
+}
+
 #modal .modal-body button{
 	width: 100%;
 	background-color: #fad400;
