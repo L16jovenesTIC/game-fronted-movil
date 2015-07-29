@@ -11,7 +11,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 		className:'retoMain',
 		events:{
 			'click header>img': 'boton',
-			'click .boton-categoria': 'cancelarReto'
+			'click .cancelarReto': 'cancelarReto'
 		},
 		boton: function(e) {
 			e.preventDefault()

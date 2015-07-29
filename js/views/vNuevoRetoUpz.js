@@ -24,6 +24,13 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 			'click .reto-geo': 'irRetoGeo',
 			'click .reto-selfie': 'irRetoSelfie',
 			'click .reto-random': 'irRetoRandom',
+			'click .cambiarCat': 'cambiarCategoria',
+		},
+		cambiarCategoria:function(e){
+			e.preventDefault()
+			console.log('cambia de categoria')
+			Base.app.vModal.modalCambiarCat()
+			Base.app.vModal.$el.modal('show')
 		},
 		irRetoGeo:function(e){
 			e.preventDefault()

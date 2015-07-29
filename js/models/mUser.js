@@ -27,7 +27,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 			}
 			else if(this.get('type')==='clan'){ 
 				var info = this.get('info')
-				return this.urlRoot+'/clan/?f=inf&uid='+info.uid+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
+				return this.urlRoot+'/clan/?f=inf&uid='+info.uid+'&k='+info.ukey; 
 			}
 			else{ return this.urlRoot; } 
 
