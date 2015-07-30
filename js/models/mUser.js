@@ -1,4 +1,4 @@
-define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, template, module){
+define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(Backbone, template, module, clan){
 
 	var user = Backbone.Model.extend({
 		//urlRoot: window.urlServidor || module.config().urlServer+"/user/?f=ver",
@@ -47,6 +47,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 				this.verificaUser()
 			}else{
 				this.on('change:info', this.actualizaInfoMenu, this)
+				this.on('change:info', this.infoClan, this)
 			}
 		},
 		ping: function(){
@@ -87,6 +88,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 					self.saveLocal()
 					Base.app.navigate('#homegame', {trigger:true})
 				}else{
+					var mensajeError = data.msg
 					Base.app.navigate('#error', {trigger:true})
 				}
 
@@ -103,11 +105,16 @@ define(['backbone', 'text!tmpl/intro.html', 'module'], function(Backbone, templa
 		},
 		infoClan: function(){
 			var self = this
+			var info = this.get('info')
+
+			// Creamos el modelo del clan
+			this.set({ clan: new clan ({uid:info.uid, ukey:info.ukey}) })
 			this.set({type:'clan'})
+			
 			//this.urlRoot += '&nom='+this.get('nom')
-			this.fetch().done(function(data){
-				console.log(data)
-			})
+			// this.fetch().done(function(data){
+			// 	console.log(data)
+			// })
 		},
 		saveLocal:function(){
 			var store = localStorage.getItem('session');
