@@ -60,7 +60,6 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 	var puzzle = Backbone.View.extend({
 		className:'puzzle',
 		events:{
-			'click header>img': 'boton',
 			'click .piece': 'boton',
 		},
 		boton: function(e) {
@@ -86,6 +85,7 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 			//Base.app.navigate('#selupz', {trigger:true})
 		},
 		initialize:function(){
+			this.listenTo(this.model, 'change', this.render)
 
 			// Conocer el ancho del dispositivo
 			this.width = $(document).width()
@@ -145,6 +145,7 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 			var html = this.template(this.collection.models)
 			//this.$el.html(this.template)
 			this.$el.html(html).css(this.style)
+			this.$('.piece').css('background-image', "url('"+this.model.get('img300')+"')")
 			return this
 		}
 	})
@@ -152,14 +153,18 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 	var puzzleContent = Backbone.View.extend({
 		className:'puzzleContent',
 		events:{
-			'click button:eq(0)': 'enviarRespuesta'
+			'click button:eq(0)': 'enviarRespuesta',
 		},
 		enviarRespuesta:function(e){
 			e.preventDefault()
 			console.log('envia la respuesta de la seleccion')
 		},
 		initialize:function(){
-			this.puzzle = new puzzle()
+			var self = this
+			this.puzzle = new puzzle({model:this.model})
+			Base.status.nuevoRetoPuzzle().done(function(resp){
+				self.model.set(resp.dat)
+			})
 		},
 		render: function(){
 			this.$el.html(this.puzzle.render().el)

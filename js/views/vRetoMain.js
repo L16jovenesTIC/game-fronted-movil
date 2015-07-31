@@ -7,10 +7,9 @@ define(['backbone', 'text!tmpl/reto.html',
 	'views/Retos/vRetoRelacionar'], 
 function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, selfie, relacionar){
 
-	var retoSup = Backbone.View.extend({
+	var retoMain = Backbone.View.extend({
 		className:'retoMain',
 		events:{
-			'click header>img': 'boton',
 			'click .cancelarReto': 'cancelarReto'	
 		},
 		boton: function(e) {
@@ -28,11 +27,13 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			if(!this.model){
 				Base.app.navigate('#error', {trigger:true})
 			}
+			// Modelo de reto 
+			//this.listenTo(this.model, 'change', this.render)
 
 			switch(this.model.get('tipo')){
-				case 'geo': this.juego = new geolocalizador(); break;
-				case 'selfie': this.juego = new selfie(); break;
-				default: this.juego = new relacionar(); break;
+				case 'geo': this.juego = new geolocalizador({model:this.model}); break;
+				case 'selfie': this.juego = new selfie({model:this.model}); break;
+				default: this.juego = new puzzle({model:this.model}); break;
 
 			}
 			//p = new puzzle()
@@ -41,14 +42,19 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			//p = new selecMultiple()
 			//p = new relacionar()
 			//p = new selfie()
+		},
+		template: function(data){
+			return _.template(template)(data)
 		}, 
 		render:function(){
 			//this.$el.html(this.template)
-			this.$el.html(template)
+			//console.log(this.model.toJSON())
+			this.$el.html(this.template({dat:this.model.toJSON()}))
 			this.$('.areaJuego').html(this.juego.render().el)
+			//this.$('.help').html(this.model.get('help'))
 			return this
 		}
 	})
 
-	return retoSup
+	return retoMain
 })

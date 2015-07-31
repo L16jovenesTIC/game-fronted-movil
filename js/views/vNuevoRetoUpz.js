@@ -2,7 +2,8 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 
 	var Reto = Backbone.Model.extend({
 		defaults:{
-			tipo:'none'
+			tipo:'none',
+			img300:'img/2015-05-1311.13.23.jpg'
 		}
 	})
 
@@ -10,11 +11,11 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 	var Categorias = Backbone.Collection.extend({
 		model:Categoria,
 		initialize:function(){
-			this.add(new Categoria({img:'img/im_selreto_cultura.png', class:"cultura"}))
-			this.add(new Categoria({img:'img/im_selreto_educa.png', class:"educacion"}))
-			this.add(new Categoria({img:'img/im_selreto_geograf.png', class:"historia"}))
-			this.add(new Categoria({img:'img/im_selreto_infrs.png', class:"infraestructura"}))
-			this.add(new Categoria({img:'img/im_selreto_misional.png', class:"misional"}))
+			this.add(new Categoria({img:'img/im_selreto_cultura.png', class:"cultura", cat:"DCT"}))
+			this.add(new Categoria({img:'img/im_selreto_educa.png', class:"educacion", cat:"EYS"}))
+			this.add(new Categoria({img:'img/im_selreto_geograf.png', class:"historia", cat:"HYG"}))
+			this.add(new Categoria({img:'img/im_selreto_infrs.png', class:"infraestructura", cat:"IYM"}))
+			this.add(new Categoria({img:'img/im_selreto_misional.png', class:"misional", cat:"MYC"}))
 		}
 	})
 
@@ -31,6 +32,9 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 			console.log('cambia de categoria')
 			Base.app.vModal.modalCambiarCat()
 			Base.app.vModal.$el.modal('show')
+			Base.app.vModal.on('cambiaCat', function(opt){ 
+				this.model = this.collection.where({cat:opt.cat})[0]; this.render() 
+			}, this)
 		},
 		irRetoGeo:function(e){
 			e.preventDefault()
@@ -50,7 +54,9 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 		initialize:function(){
 			// Aqui hacer el random del juego
 			this.collection = new Categorias()
-			this.model = this.collection.shuffle()[0]
+			//this.model = this.collection.shuffle()[0]
+			this.model = this.collection.where({cat:this.attributes.cat})[0]
+			//this.model = this.collection.where({cat:'IYM'})[0]
 			//this.template = template
 		}, 
 		render:function(){

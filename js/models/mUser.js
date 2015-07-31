@@ -25,6 +25,30 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/user/?f=ver&uid='+info.uid+'&email='+this.get('email')+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
 			}
+			// Servicios de los retos
+			else if(this.get('type')==='newCat'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newcat&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			else if(this.get('type')==='changeCat'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=chgcat&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto geo
+			else if(this.get('type')==='newgeo'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newgeo&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto selfie
+			else if(this.get('type')==='newself'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto puzzle
+			else if(this.get('type')==='newpuzz'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newpuzz&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
 			else{ return this.urlRoot; } 
 
 		},
@@ -107,9 +131,41 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			clan.set({uid:info.uid, ukey:info.ukey})
 			clan.infoClan()
 			clan.poll()
-
-			// Creamos el modelo del clan
-			//this.set({ clan: new clan ({uid:info.uid, ukey:info.ukey}) })
+		},
+		nuevaCategoria: function(upz){
+			var self = this
+			this.set({type:'newCat',upz:upz})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		cambiarCategoria: function(){
+			var self = this
+			this.set({type:'changeCat'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoGeo: function(){
+			var self = this
+			this.set({type:'newgeo'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoSelfie: function(){
+			var self = this
+			this.set({type:'newself'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoPuzzle: function(){
+			var self = this
+			this.set({type:'newpuzz'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
 		},
 		saveLocal:function(){
 			var store = localStorage.getItem('session');

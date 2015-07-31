@@ -6,10 +6,11 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			'click .btn-lista': 'irListaRetos',
 			'click .btn-nuevoReto': 'irNuevoReto',
 			'click .btn-rank': 'irRankUpz',
-			'slide.bs.carousel #carousel-selupz': 'cambioUpz',
+			'slid.bs.carousel #carousel-selupz': 'cambioUpz',
 		},
 		cambioUpz:function(e){
-			$(e.target).find('.carousel-inner .item.active').index()
+			//$(e.target).find('.carousel-inner .item.active').index()
+			this.upz = $(e.target).find('.carousel-inner .item.active').data('upz')
 		},
 		irRankUpz: function(e) {
 			e.preventDefault()
@@ -30,7 +31,10 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			e.preventDefault()
 			var self = this
 			var nuevoReto = require('views/vNuevoRetoUpz')
-			this.nuevoReto = new nuevoReto()
+			Base.status.nuevaCategoria(this.upz).done(function(resp){
+				//self.nuevoReto = new nuevoReto()
+				self.nuevoReto = new nuevoReto({attributes:{cat:resp.dat.cat}})
+			})
 
 			setTimeout(function(){
 				self.$el.html(self.nuevoReto.render().el)
@@ -40,6 +44,7 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			//Base.app.navigate('#selupz/nuevoReto')
 		},
 		initialize:function(){
+			this.upz="UCM"
 			//this.template = template
 		}, 
 		render:function(){

@@ -6,6 +6,15 @@ define(['backbone'], function(Backbone){
 			'click .cancel':'cerrarModal',
 			'show.bs.modal ':'validaModal',
 			'click .box-activarReto>div':'boxActivarRetoCambio',
+			'click .btn-changeCat':'cambiaCategoria',
+		},
+		cambiaCategoria:function(e){
+			e.preventDefault()
+			var self = this
+			Base.status.cambiarCategoria().done(function(resp){
+				self.trigger('cambiaCat', {cat:resp.dat.cat})
+				self.$el.modal('hide')
+			})
 		},
 		validaModal:function(e){
 			// Si tiene esta opcion es porq se hace click desde el menú superior
@@ -32,7 +41,7 @@ define(['backbone'], function(Backbone){
 		}, 
 		modalCambiarCat:function(){
 			this.title = "Cambiar Categoria"
-			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-changeCat">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		modalCancelarReto:function(){

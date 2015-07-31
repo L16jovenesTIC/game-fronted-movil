@@ -362,8 +362,8 @@ body.loading #animacionDado{
 }
 
 .retoMain section .areaJuego .piece{
-	position: absolute;
-	background: url('../img/2015-05-1311.13.23.jpg');
+	position: absolute; 
+	background-image: url('../img/2015-05-1311.13.23.jpg');
 	--width: 70px;
 	--height: 70px;
 }
