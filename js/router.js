@@ -42,7 +42,6 @@ define(function(require){
                 $('#main').append(localStorage.getItem('session')+' - '+localStorage.length)
                 return false
             }
-
             var intro = require('views/vIntroMain')
             this.main = new intro()
             $('#main').html(this.main.render().el)

@@ -233,10 +233,12 @@ body.loading #animacionDado{
 
 /* Lista Mystery of Suall Timeline */
 
-.tl-mos li {
-	height: 100px;
-	padding: 10px 10px 10px 0px;
-	padding-top: 0px;
+.tl-mos li .media-body{
+	padding: 10px 0;
+}
+
+.tl-mos img{
+	margin-bottom: 10px;
 }
 
 .tl-mos li:after, .retoSelMul li:after, .retoRelacionar li:after {
@@ -248,11 +250,6 @@ body.loading #animacionDado{
 
 .tl-mos li:last-child:after, .retoSelMul li:last-child:after, .retoRelacionar li:last-child:after {
 	display: none;
-}
-
-.tl-mos li img {
-	height: 60px;
-	margin: 10px;
 }
 .tl-mos li .desc-li{
 	padding: 10px;

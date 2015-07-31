@@ -38,6 +38,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			this.ping()
 			setInterval(function(){self.ping()}, 60000)
 			this.once('traeKey', this.pingKey, this)
+			this.set({clan:new clan()})
 
 			// Actualiza la información del menú lateral
 			if(this.get('info')){
@@ -47,8 +48,8 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.verificaUser()
 			}else{
 				this.on('change:info', this.actualizaInfoMenu, this)
-				this.on('change:info', this.infoClan, this)
 			}
+			this.on('change:info', this.infoClan, this)
 		},
 		ping: function(){
 			var self = this
@@ -106,11 +107,14 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		infoClan: function(){
 			var self = this
 			var info = this.get('info')
+			var clan = this.get('clan')
+			clan.set({uid:info.uid, ukey:info.ukey})
+			clan.infoClan()
 
 			// Creamos el modelo del clan
-			this.set({ clan: new clan ({uid:info.uid, ukey:info.ukey}) })
-			this.set({type:'clan'})
-			
+			//this.set({ clan: new clan ({uid:info.uid, ukey:info.ukey}) })
+			//this.set({type:'clan'})
+
 			//this.urlRoot += '&nom='+this.get('nom')
 			// this.fetch().done(function(data){
 			// 	console.log(data)
