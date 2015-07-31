@@ -14,6 +14,7 @@ define(function(require){
             "retovali": "rRetoValidando",
             "error": "rError",
             "newgroup": "rNuevoGrupo",
+            "migrupo": "rGrupoClan",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
@@ -100,6 +101,16 @@ define(function(require){
             //this.intro = new vIntroMain({el:'#main'})
             var retoSup = require('views/vNuevoGrupoMain')
             this.main = new retoSup()
+
+            $('#main').html(this.main.render().el)
+            //puzzle = require('puzzle/sliding')
+            //puzzle()
+        },
+        rGrupoClan: function(){
+            var clan = Base.status.get('clan')
+            //this.intro = new vIntroMain({el:'#main'})
+            var vMiGrupo = require('views/vMiGrupoMain')
+            this.main = new vMiGrupo({model:clan})
 
             $('#main').html(this.main.render().el)
             //puzzle = require('puzzle/sliding')

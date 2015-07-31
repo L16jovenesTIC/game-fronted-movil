@@ -431,3 +431,7 @@ body.loading #animacionDado{
 	color: 
 
 }
+
+.retoRelacionar .input-group.active p {
+	text-decoration: line-through;
+}

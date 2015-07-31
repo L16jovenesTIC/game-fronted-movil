@@ -1,0 +1,23 @@
+<!-- Página Mi Grupo --> 
+  <header class="col-xs-12">
+    <div class="col-xs-4"><img src="img/bt_mygroup_go_to_pop_up_name.png" class="img-responsive "></div>
+    <div class="col-xs-4"><img src="img/bt_mygroup_go_to_pop_up_password.png" class="img-responsive "></div>
+    <div class="col-xs-4"><img src="img/bt_mygroup_go_to_leave.png" class="img-responsive "></div>
+    <img src="img/im_mygroup.png" class="img-responsive">
+  </header>
+  <section class="col-xs-12">
+    <ul class="media-list tl-mos">
+      <% _.each(jugadores, function(item){ %>
+        <li class="media col-xs-12" >
+          <div class="media-left media-middle">
+            <img src="<%= item.pic_jug %>" class="media-object" height="60px">
+          </div>
+          <div class="media-body">
+            <p><%= item.nombre %> </p>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+  <footer class="col-xs-12 text-center">
+  </footer>

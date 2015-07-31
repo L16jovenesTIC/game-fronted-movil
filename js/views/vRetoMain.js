@@ -11,7 +11,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 		className:'retoMain',
 		events:{
 			'click header>img': 'boton',
-			'click .cancelarReto': 'cancelarReto'
+			'click .cancelarReto': 'cancelarReto'	
 		},
 		boton: function(e) {
 			e.preventDefault()
@@ -32,7 +32,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			switch(this.model.get('tipo')){
 				case 'geo': this.juego = new geolocalizador(); break;
 				case 'selfie': this.juego = new selfie(); break;
-				default: this.juego = new puzzle(); break;
+				default: this.juego = new relacionar(); break;
 
 			}
 			//p = new puzzle()

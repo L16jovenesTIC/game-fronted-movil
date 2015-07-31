@@ -25,10 +25,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/user/?f=ver&uid='+info.uid+'&email='+this.get('email')+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
 			}
-			else if(this.get('type')==='clan'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/clan/?f=inf&uid='+info.uid+'&k='+info.ukey; 
-			}
 			else{ return this.urlRoot; } 
 
 		},
@@ -110,15 +106,10 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			var clan = this.get('clan')
 			clan.set({uid:info.uid, ukey:info.ukey})
 			clan.infoClan()
+			clan.poll()
 
 			// Creamos el modelo del clan
 			//this.set({ clan: new clan ({uid:info.uid, ukey:info.ukey}) })
-			//this.set({type:'clan'})
-
-			//this.urlRoot += '&nom='+this.get('nom')
-			// this.fetch().done(function(data){
-			// 	console.log(data)
-			// })
 		},
 		saveLocal:function(){
 			var store = localStorage.getItem('session');
