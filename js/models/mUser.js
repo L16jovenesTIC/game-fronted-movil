@@ -56,6 +56,12 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&tipo='+this.get('tipo')+'&k='+info.ukey; 
 				//return this.urlRoot+'/reto/?f=newself&uid&upz&tipo&k'; 
 			}
+			// Listado de retos por upz
+			else if(this.get('type')==='lstRetos'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/upz/?f=lst&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+				//return this.urlRoot+'/upz/?f=lst&uid&upz&k'; 
+			}
 			else{ return this.urlRoot; } 
 
 		},
@@ -138,6 +144,13 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			clan.set({uid:info.uid, ukey:info.ukey})
 			clan.infoClan()
 			clan.poll()
+		},
+		listadoRetosUpz: function(upz){
+			var self = this
+			this.set({type:'lstRetos', upz:upz})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
 		},
 		nuevaCategoria: function(upz){
 			var self = this

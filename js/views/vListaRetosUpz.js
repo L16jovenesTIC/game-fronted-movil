@@ -12,9 +12,14 @@ define(['backbone', 'text!tmpl/listaRetosUpz.html'], function(Backbone, template
 		initialize:function(){
 			//this.template = template
 		}, 
-		render:function(){
+		template:function(data){
+			return _.template(template)(data)
+
+		},
+		render:function(lista){
 			//this.$el.html(this.template)
-			this.$el.html(template)
+			console.log(lista)
+			this.$el.html(this.template({list:lista}))
 			return this
 		}
 	})

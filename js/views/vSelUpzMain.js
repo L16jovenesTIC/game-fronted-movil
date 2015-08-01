@@ -21,9 +21,18 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 		},
 		irListaRetos: function(e) {
 			e.preventDefault()
+			var self = this
 			var retosUpz = require('views/vListaRetosUpz')
-			this.retos = new retosUpz()
-			this.$el.html(this.retos.render().el)
+			Base.status.listadoRetosUpz(this.upz).done(function(resp){
+				if(resp.std==200){
+					self.retos = new retosUpz()
+					self.$el.html(self.retos.render(resp.dat.lst_ret).el)
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+			})
+			//this.retos = new retosUpz()
+			//this.$el.html(this.retos.render().el)
 			Base.app.navigate('#selupz/retos')
 		},
 		irNuevoReto: function(e) {

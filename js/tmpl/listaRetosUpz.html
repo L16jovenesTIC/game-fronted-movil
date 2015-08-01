@@ -1,39 +1,20 @@
   
     <!-- Pagina Lista Retos UPZ -->
     <section class="col-xs-12">
-      <ul class="row list-unstyled tl-mos">
-        <li class="col-xs-offset-1 col-xs-10">
-          <img src="img/ic_listretos_cultura.png" class="pull-left" height="60px">
-          <img src="img/ic_rankupz_bg_number.png" class="pull-left" height="60px">
-          <div class="desc-li text-center">
-            <h6>Heading h6 </h6>
-            <p>Lorem ipsum dolor sit amet</p>
-          </div>
-        </li>
-        <li class="col-xs-offset-1 col-xs-10">
-          <img src="img/ic_listretos_educa.png" class="pull-left">
-          <img src="img/ic_rankupz_bg_number.png" class="pull-left">
-          <div class="desc-li text-center">
-            <h5>Heading h5 </h5>
-            <p>Lorem ipsum dolor sit amet</p>
-          </div>
-        </li>
-        <li class="col-xs-offset-1 col-xs-10">
-          <img src="img/ic_listretos_cultura.png" class="pull-left">
-          <img src="img/ic_rankupz_bg_number.png" class="pull-left">
-          <div class="desc-li text-center">
-            <h6>Heading h6 </h6>
-            <p>Lorem ipsum dolor sit amet</p>
-          </div>
-        </li>
-        <li class="col-xs-offset-1 col-xs-10">
-          <img src="img/ic_listretos_educa.png" class="pull-left">
-          <img src="img/ic_rankupz_bg_number.png" class="pull-left">
-          <div class="desc-li text-center">
-            <h5>Heading h5 </h5>
-            <p>Lorem ipsum dolor sit amet</p>
-          </div>
-        </li>
+      <ul class="media-list tl-mos">
+        <% _.each(list, function(item){ %>
+          <li class="media col-xs-12" data-id="<%= item.rid %>">
+            <div class="media-left media-middle">
+              <img src="img/<%= item.imgcat %>" height="60px">
+            </div>
+            <div class="media-left media-middle">
+              <img src="img/<%= item.imgtipo %>" height="60px">
+            </div>
+            <div class="media-body">
+              <p><%= item.pista %></p>
+            </div>
+          </li>
+        <% }) %>
       </ul>
     </section>
   
