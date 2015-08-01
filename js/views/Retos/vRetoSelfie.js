@@ -11,11 +11,11 @@ define(['backbone'], function(Backbone){
 			console.log('entra tomar foto')
 		},
 		initialize:function(){
-			var self = this
-			this.listenTo(this.model, 'change', this.render)
-			Base.status.nuevoRetoSelfie().done(function(resp){
-				self.model.set(resp.dat)
-			})
+			 var self = this
+			// this.listenTo(this.model, 'change', this.render)
+			// Base.status.nuevoRetoSelfie().done(function(resp){
+			// 	self.model.set(resp.dat)
+			// })
 		}, 
 		template: function(){
 

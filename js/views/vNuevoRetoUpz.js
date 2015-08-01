@@ -40,24 +40,24 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 			e.preventDefault()
 			var reto = new vReto({model:new Reto({tipo:'geo'})})
 			this.$el.html(reto.render().el)
+			//reto.setElement(this.$el)
 		},
 		irRetoSelfie:function(e){
 			e.preventDefault()
 			var reto = new vReto({model:new Reto({tipo:'selfie'})})
 			this.$el.html(reto.render().el)
+			//reto.setElement(this.$el)
 		},
 		irRetoRandom:function(e){
 			e.preventDefault()
 			var reto = new vReto({model:new Reto({tipo:'puzzle'})})
 			this.$el.html(reto.render().el)
+			//reto.setElement(this.$el)
 		},
 		initialize:function(){
-			// Aqui hacer el random del juego
 			this.collection = new Categorias()
-			//this.model = this.collection.shuffle()[0]
 			this.model = this.collection.where({cat:this.attributes.cat})[0]
 			//this.model = this.collection.where({cat:'IYM'})[0]
-			//this.template = template
 		}, 
 		render:function(){
 			//this.$el.html(this.template)

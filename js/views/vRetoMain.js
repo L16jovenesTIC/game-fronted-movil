@@ -27,15 +27,49 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			if(!this.model){
 				Base.app.navigate('#error', {trigger:true})
 			}
+			var self = this
+
 			// Modelo de reto 
 			//this.listenTo(this.model, 'change', this.render)
 
 			switch(this.model.get('tipo')){
-				case 'geo': this.juego = new geolocalizador({model:this.model}); break;
-				case 'selfie': this.juego = new selfie({model:this.model}); break;
-				default: this.juego = new puzzle({model:this.model}); break;
-
+				case 'geo': 
+					Base.status.nuevoRetoGeo().done(function(resp){
+						if(resp.std == 200){
+							self.model.set(resp.dat)
+							self.juego = new geolocalizador({model:self.model}); 
+							self.render()
+						}else{
+							Base.app.vModal.alerta(resp.msg)
+						}
+					})
+				break;
+				case 'selfie': 
+					//this.juego = new selfie({model:this.model}); 
+					//this.listenTo(this.model, 'change', this.render)
+					Base.status.nuevoRetoSelfie().done(function(resp){
+						if(resp.std == 200){
+							self.model.set(resp.dat)
+							self.juego = new selfie({model:self.model}); 
+							self.render()
+						}else{
+							Base.app.vModal.alerta(resp.msg)
+						}
+					})
+				break;
+				default: 
+					Base.status.nuevoRetoPuzzle().done(function(resp){
+						if(resp.std == 200){
+							self.model.set(resp.dat)
+							self.juego = new puzzle({model:self.model}); 
+							self.render()
+						}else{
+							Base.app.vModal.alerta(resp.msg)
+						}
+					})
+				break;
 			}
+
 			//p = new puzzle()
 			//p = new completar()
 			//p = new geolocalizador()
@@ -47,11 +81,9 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			return _.template(template)(data)
 		}, 
 		render:function(){
-			//this.$el.html(this.template)
-			//console.log(this.model.toJSON())
 			this.$el.html(this.template({dat:this.model.toJSON()}))
-			this.$('.areaJuego').html(this.juego.render().el)
-			//this.$('.help').html(this.model.get('help'))
+			if(this.juego)
+				this.$('.areaJuego').html(this.juego.render().el)
 			return this
 		}
 	})

@@ -70,10 +70,10 @@ define(['backbone'], function(Backbone){
 		initialize:function(){
 			//this.template = template
 			var self = this
-			this.listenTo(this.model, 'change', this.render)
-			Base.status.nuevoRetoGeo().done(function(resp){
-				self.model.set(resp.dat)
-			})
+			// this.listenTo(this.model, 'change', this.render)
+			// Base.status.nuevoRetoGeo().done(function(resp){
+			// 	self.model.set(resp.dat)
+			// })
 		}, 
 		template: function(){
 			var str = '<img src="'+this.model.get('img500')+'" class="img-responsive"><br>'
@@ -81,6 +81,7 @@ define(['backbone'], function(Backbone){
 			return str;
 		},
 		render:function(){
+			debugger
 			//this.$el.html(this.template)
 			this.$el.html(this.template())
 			return this

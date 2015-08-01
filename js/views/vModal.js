@@ -8,12 +8,23 @@ define(['backbone'], function(Backbone){
 			'click .box-activarReto>div':'boxActivarRetoCambio',
 			'click .btn-changeCat':'cambiaCategoria',
 		},
+		alerta:function(msg){
+			this.title = "Error"
+			this.body = '<img src="img/im_error.png" class="img-responsive"><br><p>'+msg+'</p>';
+			//this.modalCambiarCat()
+			this.render()
+			this.$el.modal('show')
+		},
 		cambiaCategoria:function(e){
 			e.preventDefault()
 			var self = this
 			Base.status.cambiarCategoria().done(function(resp){
-				self.trigger('cambiaCat', {cat:resp.dat.cat})
-				self.$el.modal('hide')
+				if(resp.std == 200){
+					self.trigger('cambiaCat', {cat:resp.dat.cat})
+					self.$el.modal('hide')
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
 			})
 		},
 		validaModal:function(e){
@@ -59,7 +70,6 @@ define(['backbone'], function(Backbone){
 		render:function(){
 			this.$('.modal-title').html(this.title)
 			this.$('.modal-body').html(this.body)
-
 			return this
 		}
 	})

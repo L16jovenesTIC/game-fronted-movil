@@ -162,9 +162,9 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		initialize:function(){
 			var self = this
 			this.puzzle = new puzzle({model:this.model})
-			Base.status.nuevoRetoPuzzle().done(function(resp){
-				self.model.set(resp.dat)
-			})
+			// Base.status.nuevoRetoPuzzle().done(function(resp){
+			// 	self.model.set(resp.dat)
+			// })
 		},
 		render: function(){
 			this.$el.html(this.puzzle.render().el)
