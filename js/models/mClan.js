@@ -28,9 +28,9 @@ define(['backbone'], function(Backbone){
 			//this.infoClan()
 		},
 		procesaDatos:function(e){
-			var infoClan = this.get('info')		
+			var infoClan = this.get('info')	
 			// Informacion de los eventos
-			this.set({lst_evt:infoClan.lst_evt})
+			this.set({lst_evt:infoClan.lst_evt.reverse()})
 			// Informacion de los Jugadores del Clan
 			this.set({lst_jug:infoClan.lst_jug})
 			// Último evento

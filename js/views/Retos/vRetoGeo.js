@@ -81,8 +81,6 @@ define(['backbone'], function(Backbone){
 			return str;
 		},
 		render:function(){
-			debugger
-			//this.$el.html(this.template)
 			this.$el.html(this.template())
 			return this
 		}

@@ -40,14 +40,21 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				return this.urlRoot+'/reto/?f=newgeo&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			}
 			// Nuevo reto selfie
-			else if(this.get('type')==='newself'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
+			// else if(this.get('type')==='newself'){ 
+			// 	var info = this.get('info')
+			// 	return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			// }
+
 			// Nuevo reto puzzle
 			else if(this.get('type')==='newpuzz'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=newpuzz&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto selfie con opcion de tipo
+			else if(this.get('type')==='newself'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&tipo='+this.get('tipo')+'&k='+info.ukey; 
+				//return this.urlRoot+'/reto/?f=newself&uid&upz&tipo&k'; 
 			}
 			else{ return this.urlRoot; } 
 
@@ -153,9 +160,9 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoSelfie: function(){
+		nuevoRetoSelfie: function(tipo){
 			var self = this
-			this.set({type:'newself'})
+			this.set({type:'newself', tipo: tipo || 'none'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})

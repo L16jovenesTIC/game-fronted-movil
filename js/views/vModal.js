@@ -7,6 +7,7 @@ define(['backbone'], function(Backbone){
 			'show.bs.modal ':'validaModal',
 			'click .box-activarReto>div':'boxActivarRetoCambio',
 			'click .btn-changeCat':'cambiaCategoria',
+			'click .btn-tipoNuevoReto':'nuevoReto',
 		},
 		alerta:function(msg){
 			this.title = "Error"
@@ -14,6 +15,18 @@ define(['backbone'], function(Backbone){
 			//this.modalCambiarCat()
 			this.render()
 			this.$el.modal('show')
+		},
+		nuevoReto:function(e){
+			e.preventDefault()
+			var self = this
+			Base.status.nuevoRetoSelfie(this.tipoNuevoReto).done(function(resp){
+				if(resp.std == 200){
+					self.trigger('cambiaCat', {cat:resp.dat.cat})
+					self.$el.modal('hide')
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+			})
 		},
 		cambiaCategoria:function(e){
 			e.preventDefault()
@@ -42,9 +55,12 @@ define(['backbone'], function(Backbone){
 			if(!$(e.target).parents('.active').length && !$(e.target).hasClass('active')){
 				var $cont = $(e.target).parents('.box-activarReto')
 				$cont.children().toggleClass('active')
+				// Guarda la opcion Temporal | Fija
+				this.tipoNuevoReto = $cont.find('.active').data('opt')
 			}
 		},
 		initialize:function(){
+			this.tipoNuevoReto = "temp"
 			this.title = "Error"
 			this.body = '<img src="img/im_error.png" class="img-responsive"><br><p>Mensaje de redireccion a la página donde tiene que contestar la encuenta</p><a href="http://suall.puentearandaestic.com" target="_blank"> Encuesta nuevo </a>';
 			//this.modalCambiarCat()
@@ -63,8 +79,8 @@ define(['backbone'], function(Backbone){
 		modalActivarReto:function(){
 			this.title = "Activar Reto"
 			this.body = '<p> Elige una de las siguientes opcciones: </p>'+
-						'<div class="box-activarReto"><div class="col-xs-6 active"><p>Temporal</p><div class="coins"><span>10</span></div></div><div class="col-xs-6"><p>Permanente</p><div class="coins more"><span>100</span></div></div></div>'+
-						'<div class="col-xs-6"><button class="btn btn-default cancel">Cancelar</button></div><div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="clearfix"></div>'
+						'<div class="box-activarReto"><div class="col-xs-6 active" data-opt="temp"><p>Temporal</p><div class="coins"><span>10</span></div></div><div class="col-xs-6" data-opt="fijo"><p>Permanente</p><div class="coins more"><span>100</span></div></div></div>'+
+						'<div class="col-xs-6"><button class="btn btn-default cancel">Cancelar</button></div><div class="col-xs-6"><button class="btn btn-default btn-tipoNuevoReto">Enviar</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		render:function(){
