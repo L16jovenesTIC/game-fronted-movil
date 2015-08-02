@@ -50,6 +50,21 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=newpuzz&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			}
+			// Nuevo reto Completar
+			else if(this.get('type')==='newcomp'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newcomp&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto Seleccion Multiple
+			else if(this.get('type')==='newmult'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newmult&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+			// Nuevo reto Relacionar
+			else if(this.get('type')==='newrel'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newrel&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
 			// Nuevo reto selfie con opcion de tipo
 			else if(this.get('type')==='newself'){ 
 				var info = this.get('info')
@@ -183,6 +198,27 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		nuevoRetoPuzzle: function(){
 			var self = this
 			this.set({type:'newpuzz'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoCompletar: function(){
+			var self = this
+			this.set({type:'newcomp'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoMultiple: function(){
+			var self = this
+			this.set({type:'newmult'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		nuevoRetoRelacionar: function(){
+			var self = this
+			this.set({type:'newrel'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
