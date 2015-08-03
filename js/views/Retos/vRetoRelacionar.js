@@ -19,14 +19,13 @@ define(['backbone', 'text!tmpl/retoRelacionar.html'], function(Backbone, templat
 		},
 		initialize:function(){
 			//this.template = template
-			this.frase = 'Este río nace en el páramo @ bajando por el cerro de @ y confluye por debajo de la tierra con el rio';
 		}, 
 		template: function(data){
 			return _.template(template)(data)
 		},
 		render:function(){
 			//this.$el.html(this.template)
-			this.$el.html(this.template({}))
+			this.$el.html(this.template(this.model.toJSON()))
 			//this.$('.areaJuego').html(p.render().el)
 			return this
 		}

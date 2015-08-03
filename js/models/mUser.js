@@ -164,7 +164,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			var clan = this.get('clan')
 			clan.set({uid:info.uid, ukey:info.ukey})
 			clan.infoClan()
-			clan.poll()
 		},
 		listadoRetosUpz: function(upz){
 			var self = this

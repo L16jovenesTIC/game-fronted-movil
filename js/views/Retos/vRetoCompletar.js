@@ -12,14 +12,19 @@ define(['backbone'], function(Backbone){
 		},
 		initialize:function(){
 			//this.template = template
-			this.frase = 'Este río nace en el páramo @ bajando por el cerro de @ y confluye por debajo de la tierra con el rio';
+			//this.frase = 'Este río nace en el páramo @ bajando por el cerro de @ y confluye por debajo de la tierra con el rio';
+			//this.dat = this.model.toJSON()
 		}, 
 		template: function(){
-			var frase = this.frase.split('@')
+			//var frase = this.frase.split('@')
+			var frase = this.model.get('frase').split('@')
 			var str = '<form><p class="text-justify">'
 
 			frase.forEach(function(item,i){
-				str += item+'<input type="text" class="input-completar" name="palabra['+i+']">'
+				if(frase.length == i+1)
+					str += item
+				else
+					str += item+'<input type="text" class="input-completar" name="palabra['+i+']">'
 			})
 			str += '</p></form>'
 			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'

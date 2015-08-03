@@ -38,7 +38,7 @@ define(['backbone'], function(Backbone){
 		},
 		poll:function(){
 			var self = this
-			this.ping()
+			//this.ping()
 			setInterval(function(){self.ping()}, 60000)
 		},
 		ping: function(){
@@ -78,6 +78,7 @@ define(['backbone'], function(Backbone){
 			this.fetch().done(function(resp){
 				// Informacion General del Clan
 				self.set({info:resp.dat})
+				self.poll()
 			})
 		},
 	})

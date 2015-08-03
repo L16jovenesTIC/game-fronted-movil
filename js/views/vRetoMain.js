@@ -30,13 +30,13 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			var self = this
 
 			// Modelo de reto 
-			//this.listenTo(this.model, 'change', this.render)
 			switch(this.model.get('tipo')){
 				case 'geo': 
 					Base.status.nuevoRetoGeo().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new geolocalizador({model:self.model}); 
+							//self.juego = new geolocalizador({model:self.model}); 
+							self.juego = new geolocalizador({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
@@ -44,11 +44,11 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 				case 'selfie': 
-					//this.juego = new selfie({model:this.model});
 					Base.status.nuevoRetoSelfie().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new selfie({model:self.model}); 
+							//self.juego = new selfie({model:self.model}); 
+							self.juego = new selfie({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
@@ -59,7 +59,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoMultiple().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new selecMultiple({model:self.model}); 
+							//self.juego = new selecMultiple({model:self.model}); 
+							self.juego = new selecMultiple({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
@@ -70,7 +71,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoRelacionar().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new relacionar({model:self.model}); 
+							//self.juego = new relacionar({model:self.model}); 
+							self.juego = new relacionar({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
@@ -81,7 +83,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoCompletar().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new completar({model:self.model}); 
+							//self.juego = new completar({model:self.model}); 
+							self.juego = new completar({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
@@ -92,7 +95,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoPuzzle().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
-							self.juego = new puzzle({model:self.model}); 
+							//self.juego = new puzzle({model:self.model}); 
+							self.juego = new puzzle({model:new Backbone.Model(resp.dat)}); 
 							self.render()
 						}else{
 							Base.app.vModal.alerta(resp.msg)
