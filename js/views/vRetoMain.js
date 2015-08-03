@@ -31,8 +31,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 
 			// Modelo de reto 
 			switch(this.model.get('tipo')){
-				case 'geo': 
-					Base.status.nuevoRetoGeo().done(function(resp){
+				case 'GEO': 
+					Base.status.nuevoRetoGeo(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new geolocalizador({model:self.model}); 
@@ -43,8 +43,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
-				case 'selfie': 
-					Base.status.nuevoRetoSelfie().done(function(resp){
+				case 'SELF': 
+					Base.status.nuevoRetoSelfie(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new selfie({model:self.model}); 
@@ -56,7 +56,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 				case 'MULT': 
-					Base.status.nuevoRetoMultiple().done(function(resp){
+					Base.status.nuevoRetoMultiple(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new selecMultiple({model:self.model}); 
@@ -68,7 +68,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 				case 'REL': 
-					Base.status.nuevoRetoRelacionar().done(function(resp){
+					Base.status.nuevoRetoRelacionar(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new relacionar({model:self.model}); 
@@ -80,7 +80,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 				case 'COMP': 
-					Base.status.nuevoRetoCompletar().done(function(resp){
+					Base.status.nuevoRetoCompletar(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new completar({model:self.model}); 
@@ -92,7 +92,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 				case 'PUZZ': 
-					Base.status.nuevoRetoPuzzle().done(function(resp){
+					Base.status.nuevoRetoPuzzle(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
 							//self.juego = new puzzle({model:self.model}); 
@@ -104,13 +104,6 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					})
 				break;
 			}
-
-			//p = new puzzle()
-			//p = new completar()
-			//p = new geolocalizador()
-			//p = new selecMultiple()
-			//p = new relacionar()
-			//p = new selfie()
 		},
 		template: function(data){
 			return _.template(template)(data)

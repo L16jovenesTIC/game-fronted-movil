@@ -38,13 +38,13 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 		},
 		irRetoGeo:function(e){
 			e.preventDefault()
-			var reto = new vReto({model:new Reto({tipo:'geo'})})
+			var reto = new vReto({model:new Reto({tipo:'GEO'})})
 			this.$el.html(reto.render().el)
 			//reto.setElement(this.$el)
 		},
 		irRetoSelfie:function(e){
 			e.preventDefault()
-			var reto = new vReto({model:new Reto({tipo:'selfie'})})
+			var reto = new vReto({model:new Reto({tipo:'SELF'})})
 			this.$el.html(reto.render().el)
 			//reto.setElement(this.$el)
 		},

@@ -50,7 +50,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=newrand&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			}
-
 			// Nuevo reto puzzle
 			else if(this.get('type')==='newpuzz'){ 
 				var info = this.get('info')
@@ -71,11 +70,16 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=newrel&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			}
-			// Nuevo reto selfie con opcion de tipo
+			// Nuevo reto Selfie 
 			else if(this.get('type')==='newself'){ 
 				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&tipo='+this.get('tipo')+'&k='+info.ukey; 
+				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 				//return this.urlRoot+'/reto/?f=newself&uid&upz&tipo&k'; 
+			}
+			// Obtener Reto 
+			else if(this.get('type')==='seeself' || this.get('type')==='seegeo' || this.get('type')==='seepuzz' || this.get('type')==='seecomp' || this.get('type')==='seerel' || this.get('type')==='seemult' ){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&k='+info.ukey; 
 			}
 			// Listado de retos por upz
 			else if(this.get('type')==='lstRetos'){ 
@@ -188,49 +192,76 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		},
 		obtenerRetoRandom: function(){
 			var self = this
+
 			this.set({type:'newrand'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoGeo: function(){
+		nuevoRetoGeo: function(rid){
 			var self = this
-			this.set({type:'newgeo'})
+			if(rid){
+				this.set({type:'seegeo', rid: rid })
+			}else
+				this.set({type:'newgeo'})
+
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoSelfie: function(tipo){
+		nuevoRetoSelfie: function(rid){
 			var self = this
-			this.set({type:'newself', tipo: tipo || 'none'})
+			if(rid){
+				this.set({type:'seeself', rid: rid })
+			}else
+				this.set({type:'newself'})
+
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoPuzzle: function(){
+		nuevoRetoPuzzle: function(rid){
 			var self = this
-			this.set({type:'newpuzz'})
+
+			if(rid){
+				this.set({type:'seepuzz', rid: rid })
+			}else
+				this.set({type:'newpuzz'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoCompletar: function(){
+		nuevoRetoCompletar: function(rid){
 			var self = this
-			this.set({type:'newcomp'})
+
+			if(rid){
+				this.set({type:'seecomp', rid: rid })
+			}else
+				this.set({type:'newcomp'})
+
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoMultiple: function(){
+		nuevoRetoMultiple: function(rid){
 			var self = this
-			this.set({type:'newmult'})
+
+			if(rid){
+				this.set({type:'seemult', rid: rid })
+			}else
+				this.set({type:'newmult'})
+
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
-		nuevoRetoRelacionar: function(){
+		nuevoRetoRelacionar: function(rid){
 			var self = this
-			this.set({type:'newrel'})
+
+			if(rid){
+				this.set({type:'seerel', rid: rid })
+			}else
+				this.set({type:'newrel'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})

@@ -3,7 +3,7 @@
     <section class="col-xs-12">
       <ul class="media-list tl-mos">
         <% _.each(list, function(item){ %>
-          <li class="media col-xs-12" data-id="<%= item.rid %>">
+          <li class="media col-xs-12" data-id="<%= item.rid %>" data-tipo="<%= item.tipo %>">
             <div class="media-left media-middle">
               <img src="img/<%= item.imgcat %>" height="60px">
             </div>
