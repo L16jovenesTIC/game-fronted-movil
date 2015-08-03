@@ -55,7 +55,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
-				case 'multiple': 
+				case 'MULT': 
 					Base.status.nuevoRetoMultiple().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
@@ -66,7 +66,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
-				case 'relacionar': 
+				case 'REL': 
 					Base.status.nuevoRetoRelacionar().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
@@ -77,7 +77,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
-				case 'completar': 
+				case 'COMP': 
 					Base.status.nuevoRetoCompletar().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
@@ -88,7 +88,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
-				default: 
+				case 'PUZZ': 
 					Base.status.nuevoRetoPuzzle().done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)

@@ -50,8 +50,15 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 		},
 		irRetoRandom:function(e){
 			e.preventDefault()
-			var reto = new vReto({model:new Reto({tipo:'puzzle'})})
-			this.$el.html(reto.render().el)
+			var self = this
+			Base.status.obtenerRetoRandom().done(function(resp){
+				if(resp.std== 200){
+					var reto = new vReto({model:new Reto({tipo:resp.dat.tipo})})
+					self.$el.html(reto.render().el)
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+			})
 			//reto.setElement(this.$el)
 		},
 		initialize:function(){

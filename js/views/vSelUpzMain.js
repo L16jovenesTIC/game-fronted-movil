@@ -28,6 +28,7 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 				if(resp.std==200){
 					self.retos = new retosUpz()
 					self.$el.html(self.retos.render(resp.dat.lst_ret).el)
+					Base.app.navigate('#selupz/retos')
 				}else{
 					Base.app.vModal.alerta(resp.msg)
 				}
@@ -35,7 +36,7 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			})
 			//this.retos = new retosUpz()
 			//this.$el.html(this.retos.render().el)
-			Base.app.navigate('#selupz/retos')
+			
 		},
 		irNuevoReto: function(e) {
 			$('body').toggleClass('loading')
@@ -46,11 +47,13 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 				if(resp.std==200){
 					self.nuevoReto = new nuevoReto({attributes:{cat:resp.dat.cat}})
 					self.$el.html(self.nuevoReto.render().el)
+					Base.app.navigate('#selupz/nuevoReto')
 				}else{
 					Base.app.vModal.alerta(resp.msg)
 				}
 				$('body').toggleClass('loading')			
 			})
+
 			// setTimeout(function(){
 			// 	self.$el.html(self.nuevoReto.render().el)
 			// 	console.log('Entra timeout')

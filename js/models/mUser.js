@@ -45,6 +45,12 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			// 	return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			// }
 
+			// Nuevo reto random
+			else if(this.get('type')==='newrand'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=newrand&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
+
 			// Nuevo reto puzzle
 			else if(this.get('type')==='newpuzz'){ 
 				var info = this.get('info')
@@ -177,6 +183,13 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		cambiarCategoria: function(){
 			var self = this
 			this.set({type:'changeCat'})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		obtenerRetoRandom: function(){
+			var self = this
+			this.set({type:'newrand'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
