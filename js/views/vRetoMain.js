@@ -4,7 +4,8 @@ define(['backbone', 'text!tmpl/reto.html',
 	'views/Retos/vRetoGeo', 
 	'views/Retos/vRetoSelMul', 
 	'views/Retos/vRetoSelfie', 
-	'views/Retos/vRetoRelacionar'], 
+	'views/Retos/vRetoRelacionar',
+	'views/vRetoSusp'], 
 function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, selfie, relacionar){
 
 	var retoMain = Backbone.View.extend({
@@ -16,10 +17,14 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			e.preventDefault()
 			//Base.app.navigate('#selupz', {trigger:true})
 		},
+		retoSusp:function(opt){
+			var retoSusp = require('views/vRetoSusp')
+			this.susp = new retoSusp({model:new Backbone.Model(opt)})
+			this.$el.html(this.susp.render().el)
+		},
 		cancelarReto:function(e){
 			e.preventDefault()
-			console.log('cancelar reto')
-			Base.app.vModal.modalCancelarReto()
+			Base.app.vModal.modalCancelarReto(this.model.get('rid'))
 			Base.app.vModal.$el.modal('show')
 		},
 		initialize:function(){
@@ -28,7 +33,6 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 				Base.app.navigate('#error', {trigger:true})
 			}
 			var self = this
-
 			// Modelo de reto 
 			switch(this.model.get('tipo')){
 				case 'GEO': 
@@ -37,7 +41,10 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 							self.model.set(resp.dat)
 							//self.juego = new geolocalizador({model:self.model}); 
 							self.juego = new geolocalizador({model:new Backbone.Model(resp.dat)}); 
+							self.juego.on('retoSusp', self.retoSusp, self)
 							self.render()
+						}else if (resp.std == 48 ){ // Cuando el juego se encuentra suspendido
+							self.retoSusp({time:resp.dat.time, rid: self.model.get('rid')})
 						}else{
 							Base.app.vModal.alerta(resp.msg)
 						}
@@ -103,7 +110,20 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 						}
 					})
 				break;
+				default: 
+					Base.status.nuevoRetoPuzzle(this.model.get('rid')).done(function(resp){
+						if(resp.std == 200){
+							self.model.set(resp.dat)
+							//self.juego = new puzzle({model:self.model}); 
+							self.juego = new puzzle({model:new Backbone.Model(resp.dat)}); 
+							self.render()
+						}else{
+							Base.app.vModal.alerta(resp.msg)
+						}
+					})
+				break;
 			}
+			
 		},
 		template: function(data){
 			return _.template(template)(data)

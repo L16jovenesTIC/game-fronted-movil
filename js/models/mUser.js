@@ -25,59 +25,14 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/user/?f=ver&uid='+info.uid+'&email='+this.get('email')+'&k='+this.get('keyapp')+'&token='+this.get('token'); 
 			}
-			// Servicios de los retos
-			else if(this.get('type')==='newCat'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newcat&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			else if(this.get('type')==='changeCat'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=chgcat&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto geo
-			else if(this.get('type')==='newgeo'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newgeo&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto selfie
-			// else if(this.get('type')==='newself'){ 
-			// 	var info = this.get('info')
-			// 	return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			// }
-
-			// Nuevo reto random
-			else if(this.get('type')==='newrand'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newrand&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto puzzle
-			else if(this.get('type')==='newpuzz'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newpuzz&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto Completar
-			else if(this.get('type')==='newcomp'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newcomp&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto Seleccion Multiple
-			else if(this.get('type')==='newmult'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newmult&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
-			// Nuevo reto Relacionar
-			else if(this.get('type')==='newrel'){ 
-				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newrel&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-			}
 			// Nuevo reto Selfie 
-			else if(this.get('type')==='newself'){ 
+			else if(this.get('type')==='newself' || this.get('type')==='newgeo' || this.get('type')==='newpuzz' || this.get('type')==='newcomp' || this.get('type')==='newrel' || this.get('type')==='newmult' || this.get('type')==='newrand' || this.get('type')==='chgcat' || this.get('type')==='newcat'){ 
 				var info = this.get('info')
-				return this.urlRoot+'/reto/?f=newself&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 				//return this.urlRoot+'/reto/?f=newself&uid&upz&tipo&k'; 
 			}
-			// Obtener Reto 
-			else if(this.get('type')==='seeself' || this.get('type')==='seegeo' || this.get('type')==='seepuzz' || this.get('type')==='seecomp' || this.get('type')==='seerel' || this.get('type')==='seemult' ){ 
+			// Obtener Reto , Cancelar Reto
+			else if(this.get('type')==='seeself' || this.get('type')==='seegeo' || this.get('type')==='seepuzz' || this.get('type')==='seecomp' || this.get('type')==='seerel' || this.get('type')==='seemult' || this.get('type')==='delreto' || this.get('type')==='actreto'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&k='+info.ukey; 
 			}
@@ -86,6 +41,12 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/upz/?f=lst&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 				//return this.urlRoot+'/upz/?f=lst&uid&upz&k'; 
+			}
+			// Validar Reto Geo
+			else if(this.get('type')==='valgeo'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f=valgeo&uid='+info.uid+'&rid='+this.get('rid')+'&lon='+this.get('lon')+'&lat='+this.get('lat')+'&k='+info.ukey; 
+				//return this.urlRoot+'/reto/?f=valgeo&uid&rid&lon&lat&k'; 
 			}
 			else{ return this.urlRoot; } 
 
@@ -178,14 +139,14 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		},
 		nuevaCategoria: function(upz){
 			var self = this
-			this.set({type:'newCat',upz:upz})
+			this.set({type:'newcat',upz:upz})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
 		cambiarCategoria: function(){
 			var self = this
-			this.set({type:'changeCat'})
+			this.set({type:'chgcat'})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})
@@ -198,6 +159,13 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				Base.app.navigate('#error', {trigger:true})
 			})
 		},
+		cancelaReto:function(opt){
+			var self = this
+			this.set(opt)
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
 		nuevoRetoGeo: function(rid){
 			var self = this
 			if(rid){
@@ -205,6 +173,13 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			}else
 				this.set({type:'newgeo'})
 
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		validaReto: function(opt){
+			var self = this
+			this.set(opt)
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})

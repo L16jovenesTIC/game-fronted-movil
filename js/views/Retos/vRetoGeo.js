@@ -7,26 +7,6 @@ define(['backbone'], function(Backbone){
 		},
 		checkIn:function(e){
 			var self = this
-			e.preventDefault();
-			if (navigator.geolocation) {
-			  navigator.geolocation.getCurrentPosition( function(position){
-				console.log('entra geo')
-			  	self.$('.geo').html(position.coords.latitude+' - '+position.coords.longitude)
-			  	console.log(position.coords.latitude+' - '+position.coords.longitude)
-			  },
-			  function(error){
-			  	console.log('entra geo error')
-			  	console.log(error)
-			  	self.$('.geo').html(error)
-			  },{
-	            enableHighAccuracy : true,
-	            timeout : 10000, // 10s
-	            //maximumAge : 0
-	          });
-			} else {
-			  console.log('not supported');
-			}
-			//self.$('.geo').append('entra')
 
 			//verificamos si el navegador soporta Geolocation API de HTML5
 			if(navigator.geolocation){
@@ -34,10 +14,14 @@ define(['backbone'], function(Backbone){
 			    navigator.geolocation.getCurrentPosition(function(objPosicion){
 			        //almacenamos en variables la longitud y latitud
 			        var iLongitud=objPosicion.coords.longitude, iLatitud=objPosicion.coords.latitude;
-			        //mostramos en pantalla (solo texto) las coordenadas obtenidas
-			        // divCoordenadas.innerHTML='Latitud: '+iLatitud+' - Longitud: '+iLongitud;
-			        console.log("Estas son tus coordenadas. Latitud: "+iLatitud+" - Longitud: "+iLongitud);
-			        self.$('.geo').append("Estas son tus coordenadas. Latitud: "+iLatitud+" - Longitud: "+iLongitud)
+			        //console.log("Estas son tus coordenadas. Latitud: "+iLatitud+" - Longitud: "+iLongitud);
+			        Base.status.validaReto({type:"valgeo", rid:self.model.get('rid'), lat:iLatitud, lon:iLongitud}).done(function(resp){
+			        	// Reto Suspendido
+			        	if(resp.std == 48){
+			        		self.trigger('retoSusp', {time:resp.dat.time,rid:self.model.get('rid')})
+			        		//Base.app.navigate('#retosusp', {trigger:true})
+			        	}
+			        })
 
 			    },function(objError){
 			        //manejamos los errores devueltos por Geolocation API
@@ -65,14 +49,12 @@ define(['backbone'], function(Backbone){
 			    console.log('Lo sentimos!! Su navegador no soporta Geolocation API de HTML5');
 			}
 
-
 		},
 		initialize:function(){
 			//this.template = template
-			var self = this
 		}, 
 		template: function(){
-			var str = '<img src="'+this.model.get('img500')+'" class="img-responsive"><br>'
+			var str = '<img src="'+this.model.get('img300')+'" class="img-responsive"><br>'
 			str += '<div class="col-xs-6"><button class="btn btn-default">Hacer CheckIn</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
 			return str;
 		},

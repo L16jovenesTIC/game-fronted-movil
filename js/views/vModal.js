@@ -8,6 +8,8 @@ define(['backbone'], function(Backbone){
 			'click .box-activarReto>div':'boxActivarRetoCambio',
 			'click .btn-changeCat':'cambiaCategoria',
 			'click .btn-tipoNuevoReto':'nuevoReto',
+			'click .btn-cancelarReto':'cancelarReto',
+			'click .btn-activarReto':'activarReto',
 		},
 		alerta:function(msg){
 			this.title = "Error"
@@ -23,6 +25,36 @@ define(['backbone'], function(Backbone){
 				if(resp.std == 200){
 					self.trigger('cambiaCat', {cat:resp.dat.cat})
 					self.$el.modal('hide')
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+			})
+		},
+		cancelarReto:function(e){
+			e.preventDefault()
+			var self = this
+			var rid = $(e.target).data('id')
+			var opt = { type:"delreto", rid: rid }
+			Base.status.cancelaReto(opt).done(function(resp){
+				if(resp.std == 200){
+					//self.trigger('delreto', {cat:resp.dat.cat})
+					self.$el.modal('hide')
+					Base.app.navigate('#homegame', {trigger:true})
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+			})
+		},
+		activarReto:function(e){
+			e.preventDefault()
+			var self = this
+			var rid = $(e.target).data('id')
+			var opt = { type:"actreto", rid: rid }
+			Base.status.cancelaReto(opt).done(function(resp){
+				if(resp.std == 200){
+					self.trigger('restauraReto', resp.dat)
+					self.$el.modal('hide')
+					//Base.app.navigate('#homegame', {trigger:true})
 				}else{
 					Base.app.vModal.alerta(resp.msg)
 				}
@@ -71,12 +103,17 @@ define(['backbone'], function(Backbone){
 			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-changeCat">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
-		modalCancelarReto:function(){
+		modalCancelarReto:function(rid){
 			this.title = "Cancelar Reto"
-			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-cancelarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
-		modalActivarReto:function(){
+		modalActivarReto:function(rid){
+			this.title = "Activar Reto"
+			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-activarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
+			this.render()
+		},
+		modalComprarReto:function(){
 			this.title = "Activar Reto"
 			this.body = '<p> Elige una de las siguientes opcciones: </p>'+
 						'<div class="box-activarReto"><div class="col-xs-6 active" data-opt="temp"><p>Temporal</p><div class="coins"><span>10</span></div></div><div class="col-xs-6" data-opt="fijo"><p>Permanente</p><div class="coins more"><span>100</span></div></div></div>'+
