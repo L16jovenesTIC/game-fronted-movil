@@ -11,8 +11,10 @@ define(['backbone', 'text!tmpl/listaRetosUpz.html', 'views/vRetoMain'], function
 			var rid = $(e.target).parents('li[data-id]').data('id')
 			var tipo = $(e.target).parents('li[data-id]').data('tipo')
 
-			var reto = new vReto({model:new Backbone.Model({tipo:tipo,rid:rid})})
+			var reto = this.reto = new vReto({model:new Backbone.Model({tipo:tipo,rid:rid})})
 			this.$el.html(reto.render().el)
+
+			this.undelegateEvents()
 		},
 		boton: function(e) {
 			e.preventDefault()

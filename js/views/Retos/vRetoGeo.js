@@ -19,8 +19,9 @@ define(['backbone'], function(Backbone){
 			        	// Reto Suspendido
 			        	if(resp.std == 48){
 			        		self.trigger('retoSusp', {time:resp.dat.time,rid:self.model.get('rid')})
-			        		//Base.app.navigate('#retosusp', {trigger:true})
 			        	}
+			        	else if(resp.std == 200) // Reto Superado
+			        		self.trigger('retoSup', {})
 			        })
 
 			    },function(objError){

@@ -7,7 +7,17 @@ define(['backbone'], function(Backbone){
 		},
 		enviarRespuesta: function(e) {
 			e.preventDefault()
-			console.log('enviando respuesta')
+			var self = this
+			var resp = this.$('#form-retoCompletar').serialize()
+
+			Base.status.validaReto({type:"valcomp", rid:this.model.get('rid'), resp:resp}).done(function(resp){
+	        	// Reto Suspendido
+	        	if(resp.std == 48){
+	        		self.trigger('retoSusp', {time:resp.dat.time,rid:self.model.get('rid')})
+	        	}
+	        	else if(resp.std == 200) // Reto Superado
+	        		self.trigger('retoSup', {})
+	        })
 			//Base.app.navigate('#selupz', {trigger:true})
 		},
 		initialize:function(){
@@ -18,13 +28,14 @@ define(['backbone'], function(Backbone){
 		template: function(){
 			//var frase = this.frase.split('@')
 			var frase = this.model.get('frase').split('@')
-			var str = '<form><p class="text-justify">'
+			var str = '<form action="#" id="form-retoCompletar"><p class="text-justify">'
 
 			frase.forEach(function(item,i){
-				if(frase.length == i+1)
+				i++
+				if(frase.length == i)
 					str += item
 				else
-					str += item+'<input type="text" class="input-completar" name="palabra['+i+']">'
+					str += item+'<input type="text" class="input-completar" name="p'+i+'">'
 			})
 			str += '</p></form>'
 			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'

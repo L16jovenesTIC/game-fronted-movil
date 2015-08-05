@@ -157,7 +157,20 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		},
 		enviarRespuesta:function(e){
 			e.preventDefault()
-			console.log('envia la respuesta de la seleccion')
+			var self = this
+			var resp = 't=sus'
+			if(this.puzzle.solved)
+				var resp = 't=val'
+
+			Base.status.validaReto({type:"valpuzz", rid:this.model.get('rid'), resp:resp}).done(function(resp){
+	        	// Reto Suspendido
+	        	if(resp.std == 48){
+	        		self.trigger('retoSusp', {time:resp.dat.time,rid:self.model.get('rid')})
+	        	}
+	        	else if(resp.std == 200) // Reto Superado
+	        		self.trigger('retoSup', {})
+	        })
+
 		},
 		initialize:function(){
 			var self = this

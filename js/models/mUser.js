@@ -40,13 +40,21 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			else if(this.get('type')==='lstRetos'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/upz/?f=lst&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
-				//return this.urlRoot+'/upz/?f=lst&uid&upz&k'; 
 			}
 			// Validar Reto Geo
 			else if(this.get('type')==='valgeo'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=valgeo&uid='+info.uid+'&rid='+this.get('rid')+'&lon='+this.get('lon')+'&lat='+this.get('lat')+'&k='+info.ukey; 
-				//return this.urlRoot+'/reto/?f=valgeo&uid&rid&lon&lat&k'; 
+			}
+			// Validar Reto Seleccion Multiple
+			// else if(this.get('type')==='valmult'){ 
+			// 	var info = this.get('info')
+			// 	return this.urlRoot+'/reto/?f=valmult&uid='+info.uid+'&rid='+this.get('rid')+'&cod='+this.get('cod')+'&k='+info.ukey; 
+			// }
+			// Validar Reto Completar
+			else if(this.get('type')==='valcomp' || this.get('type')==='valmult' || this.get('type')==='valpuzz'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&'+this.get('resp')+'&k='+info.ukey; 
 			}
 			else{ return this.urlRoot; } 
 

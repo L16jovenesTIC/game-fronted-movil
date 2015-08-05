@@ -38,13 +38,13 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 		},
 		irRetoGeo:function(e){
 			e.preventDefault()
-			var reto = new vReto({model:new Reto({tipo:'GEO'})})
+			var reto = this.reto = new vReto({model:new Reto({tipo:'GEO'})})
 			this.$el.html(reto.render().el)
 			//reto.setElement(this.$el)
 		},
 		irRetoSelfie:function(e){
 			e.preventDefault()
-			var reto = new vReto({model:new Reto({tipo:'SELF'})})
+			var reto = this.reto = new vReto({model:new Reto({tipo:'SELF'})})
 			this.$el.html(reto.render().el)
 			//reto.setElement(this.$el)
 		},
@@ -53,7 +53,7 @@ define(['backbone', 'text!tmpl/nuevoRetoUpz.html', 'views/vRetoMain'], function(
 			var self = this
 			Base.status.obtenerRetoRandom().done(function(resp){
 				if(resp.std== 200){
-					var reto = new vReto({model:new Reto({tipo:resp.dat.tipo})})
+					var reto = self.reto = new vReto({model:new Reto({tipo:resp.dat.tipo})})
 					self.$el.html(reto.render().el)
 				}else{
 					Base.app.vModal.alerta(resp.msg)

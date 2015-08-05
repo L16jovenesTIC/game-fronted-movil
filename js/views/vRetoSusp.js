@@ -13,10 +13,12 @@ define(['backbone', 'text!tmpl/retoSuspendido.html', 'views/vRetoMain'], functio
 		},
 		restauraReto:function(opt){
 			var vReto = require('views/vRetoMain')
-			var reto = new vReto({model:new Backbone.Model(opt)})
+			var reto = this.reto = new vReto({model:new Backbone.Model(opt)})
 			reto.setElement(this.$el).render()
-			//this.remove()
 			//this.$el.html(reto.render().el)
+			
+			this.undelegateEvents()
+			clearInterval(this.t);
 		},
 		initialize:function(){
 			//this.template = template
@@ -25,7 +27,7 @@ define(['backbone', 'text!tmpl/retoSuspendido.html', 'views/vRetoMain'], functio
 			this.now = new Date(0,0,0,0,0,this.model.get('time')-1)
 			this.$('.reloj').html(this.now.getHours()+':'+this.now.getMinutes()+':'+this.now.getSeconds())
 
-			setInterval(function(){
+			this.t = setInterval(function(){
 				if(self.seg>0){
 					var reloj = new Date(0,0,0,0,0,--self.seg)
 					self.$('.reloj').html(reloj.getHours()+':'+reloj.getMinutes()+':'+reloj.getSeconds())
