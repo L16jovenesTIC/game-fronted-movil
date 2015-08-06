@@ -41,6 +41,11 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/upz/?f=lst&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
 			}
+			// Ranking por upz
+			else if(this.get('type')==='rank'){ 
+				var info = this.get('info')
+				return this.urlRoot+'/upz/?f=rank&uid='+info.uid+'&upz='+this.get('upz')+'&k='+info.ukey; 
+			}
 			// Validar Reto Geo
 			else if(this.get('type')==='valgeo'){ 
 				var info = this.get('info')
@@ -141,6 +146,13 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		listadoRetosUpz: function(upz){
 			var self = this
 			this.set({type:'lstRetos', upz:upz})
+			return this.fetch().fail(function(){
+				Base.app.navigate('#error', {trigger:true})
+			})
+		},
+		rankingUpz: function(upz){
+			var self = this
+			this.set({type:'rank', upz:upz})
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error', {trigger:true})
 			})

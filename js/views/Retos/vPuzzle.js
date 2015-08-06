@@ -153,6 +153,11 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		className:'puzzleContent',
 		events:{
 			'click button:eq(0)': 'enviarRespuesta',
+			'click button:eq(1)': 'volverUPZ',
+		},
+		volverUPZ:function(e){
+			e.preventDefault()
+			Base.app.navigate('#selupz', {trigger:true})
 		},
 		enviarRespuesta:function(e){
 			e.preventDefault()

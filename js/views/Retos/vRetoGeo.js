@@ -3,7 +3,12 @@ define(['backbone'], function(Backbone){
 	var ng = Backbone.View.extend({
 	className:'retoGeo col-xs-12',
 		events:{
-			'click button:eq(0)': 'checkIn'
+			'click button:eq(0)': 'checkIn',
+			'click button:eq(1)': 'volverUPZ'
+		},
+		volverUPZ:function(e){
+			e.preventDefault()
+			Base.app.navigate('#selupz', {trigger:true})
 		},
 		checkIn:function(e){
 			var self = this

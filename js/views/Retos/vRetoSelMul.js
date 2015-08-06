@@ -3,7 +3,12 @@ define(['backbone'], function(Backbone){
 	var ng = Backbone.View.extend({
 	className:'retoSelMul col-xs-12',
 		events:{
-			'click button:eq(0)': 'enviarRespuesta'
+			'click button:eq(0)': 'enviarRespuesta',
+			'click button:eq(1)': 'volverUPZ'
+		},
+		volverUPZ:function(e){
+			e.preventDefault()
+			Base.app.navigate('#selupz', {trigger:true})
 		},
 		enviarRespuesta:function(e){
 			e.preventDefault()

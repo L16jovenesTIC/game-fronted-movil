@@ -4,8 +4,13 @@ define(['backbone', 'text!tmpl/retoRelacionar.html', 'utils/activaSliderTouch'],
 	className:'retoRelacionar col-xs-12',
 		events:{
 			'click button:eq(0)': 'enviarRespuesta',
+			'click button:eq(1)': 'volverUPZ',
 			'click .glyphicon-ok': 'relacionar',
 			'click .lst-cola [data-id]': 'escoger',
+		},
+		volverUPZ:function(e){
+			e.preventDefault()
+			Base.app.navigate('#selupz', {trigger:true})
 		},
 		escoger:function(e){
 			var cod_a = $(e.target).data('id') || $(e.target).parent().data('id');

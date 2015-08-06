@@ -237,8 +237,21 @@ body.loading #animacionDado{
 	padding: 10px 0;
 }
 
+.tl-mos li .media-left{
+	position: relative;
+}
+
 .tl-mos img{
 	margin-bottom: 10px;
+}
+
+.tl-mos span.rank{
+	position: absolute;
+	width: 65px;
+	height: 100%;
+	top: 0;
+	padding: 15px 13px 10px 5px;
+	left: 0;
 }
 
 .tl-mos li:after, .retoSelMul li:after, .retoRelacionar li:after {

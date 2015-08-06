@@ -13,11 +13,20 @@ define(['backbone', 'text!tmpl/selUpz.html', './vRankUpzMain', './vListaRetosUpz
 			this.upz = $(e.target).find('.carousel-inner .item.active').data('upz')
 		},
 		irRankUpz: function(e) {
+			$('body').toggleClass('loading')
 			e.preventDefault()
+			var self = this
 			var rankupz = require('views/vRankUpzMain')
-			this.rank = new rankupz()
-			this.$el.html(this.rank.render().el)
-			Base.app.navigate('#selupz/rank')
+			Base.status.rankingUpz(this.upz).done(function(resp){
+				if(resp.std==200){
+					self.rank = new rankupz({model:new Backbone.Model(resp.dat)})
+					self.$el.html(self.rank.render().el)
+					Base.app.navigate('#selupz/rank')
+				}else{
+					Base.app.vModal.alerta(resp.msg)
+				}
+				$('body').toggleClass('loading')			
+			})
 		},
 		irListaRetos: function(e) {
 			$('body').toggleClass('loading')
