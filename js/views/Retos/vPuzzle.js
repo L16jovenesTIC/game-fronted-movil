@@ -128,7 +128,7 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		checkSolved:function(model){
 
 			if( model.concuerda() && this.collection.validaPuzzle()){
-				alert('Se ha finalizado exitosamente !')
+				//alert('Se ha finalizado exitosamente !')
 				model.set({clase:'piece'})
 				this.solved = true;
 			}
@@ -136,7 +136,6 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		template: function(data){
 			//var template = _.template('<div class="piece"> <%= this.forEach(function(item){ console.log(item )}) %> </div>')
 			//var template = _.template('<%  _.map( <%=col%>, function(item){ return $(item.html).addClass(item.cid).get(0) }) %>')
-
 			return _.map(data, function(item){ return $(item.render()).attr('data-id', item.cid).get(0) })
 			//return _.map( data , function(item){ return $(item.html).addClass(item.cid).get(0) })
 			return template({col:data})

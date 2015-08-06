@@ -328,7 +328,7 @@ body.loading #animacionDado{
 }
 
 .retoMain header .col-xs-12 {
-	margin-top: -15px;
+	--margin-top: -15px;
 }
 
 .retoMain header img{
@@ -427,9 +427,8 @@ body.loading #animacionDado{
 	background-color: white;
 }
 
-.retoRelacionar ul li span:last-child {
-	color: 
-
+.retoRelacionar ul.lst-cola li span:last-child {
+	color: white;
 }
 
 .retoRelacionar .input-group.active p {

@@ -52,7 +52,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			// 	return this.urlRoot+'/reto/?f=valmult&uid='+info.uid+'&rid='+this.get('rid')+'&cod='+this.get('cod')+'&k='+info.ukey; 
 			// }
 			// Validar Reto Completar
-			else if(this.get('type')==='valcomp' || this.get('type')==='valmult' || this.get('type')==='valpuzz'){ 
+			else if(this.get('type')==='valcomp' || this.get('type')==='valmult' || this.get('type')==='valpuzz' || this.get('type')==='valrel'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&'+this.get('resp')+'&k='+info.ukey; 
 			}

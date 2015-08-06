@@ -9,12 +9,6 @@ define(['backbone'], function(Backbone){
 			e.preventDefault()
 			var self = this, cod = 0
 			var resp = this.$('#form-selMult').serialize()
-			debugger
-			//var resp = this.$('#form-selMult').serializeArray()
-			// resp.forEach(function(item){
-			// 	if(item.name=="cod")
-			// 		cod = item.value
-			// })
 
 			Base.status.validaReto({type:"valmult", rid:this.model.get('rid'), resp:resp}).done(function(resp){
 	        	// Reto Suspendido
