@@ -3,15 +3,21 @@ define(['backbone', 'text!tmpl/miGrupo.html'], function(Backbone, template){
 	var ng = Backbone.View.extend({
 		className:'miGrupo row',
 		events:{
-			'click section button': 'boton'
+			'click section button': 'boton',
+			'click .btn-miGrupoSalir': 'salir'
 		},
 		boton: function(e) {
 			e.preventDefault()
 		},
+		salir: function(e) {
+			e.preventDefault()
+			Base.app.navigate('#homegame', {trigger:true})
+
+			
+		},
 		initialize:function(){
 			// Model: mClan
 			this.listenTo(this.model, 'change:lst_jug', this.render)
-			console.log(this.model)
 		},
 		template:function(data){
 			return _.template(template)(data)

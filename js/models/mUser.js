@@ -51,12 +51,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f=valgeo&uid='+info.uid+'&rid='+this.get('rid')+'&lon='+this.get('lon')+'&lat='+this.get('lat')+'&k='+info.ukey; 
 			}
-			// Validar Reto Seleccion Multiple
-			// else if(this.get('type')==='valmult'){ 
-			// 	var info = this.get('info')
-			// 	return this.urlRoot+'/reto/?f=valmult&uid='+info.uid+'&rid='+this.get('rid')+'&cod='+this.get('cod')+'&k='+info.ukey; 
-			// }
-			// Validar Reto Completar
+			// Validar Retos
 			else if(this.get('type')==='valcomp' || this.get('type')==='valmult' || this.get('type')==='valpuzz' || this.get('type')==='valrel'){ 
 				var info = this.get('info')
 				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&'+this.get('resp')+'&k='+info.ukey; 
@@ -79,7 +74,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.set({type:'ver'})
 				this.verificaUser()
 			}else{
-				this.on('change:info', this.actualizaInfoMenu, this)
+				//this.on('change:info', this.actualizaInfoMenu, this)
 			}
 			this.on('change:info', this.infoClan, this)
 		},
@@ -141,7 +136,10 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			var info = this.get('info')
 			var clan = this.get('clan')
 			clan.set({uid:info.uid, ukey:info.ukey})
-			clan.infoClan()
+			clan.infoClan().done(function(){
+				self.actualizaInfoMenu()
+			})
+
 		},
 		listadoRetosUpz: function(upz){
 			var self = this
@@ -268,11 +266,54 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		    _.extend(data, this.toJSON());
 		    localStorage.setItem('session', JSON.stringify(data));
 		},
+		// Función para calcular los días transcurridos entre dos fechas
+		restaFechas:function(f1)
+		 {
+			 // var aFecha1 = f1.split('/'); 
+			 // var aFecha2 = f2.split('/'); 
+			 // var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+			 // var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+
+			 //var fFecha1 = Date.UTC(f1); 
+			 //var fFecha2 = Date.UTC(f2); 
+
+			 //var dif = fFecha2 - fFecha1;
+			 var dif = f1 - Date.now();
+			 var dias = Math.floor(dif/(1000*60*60*24)); 
+			 return dias;
+		 },
 		actualizaInfoMenu:function(){
+			var self = this
 			var info = this.get('info')
+			var clan = this.get('clan')
+			var infoClan = clan.get('info')
+
 			$('.infouser .picsqr').attr({src:info.picsqr})
 			$('.infouser .nombre').html(info.name)
-			$('.infouser .clan').html(info.clan)
+			$('.infouser .clan').html(infoClan.nombre)
+			$('.infouser .tiempo_fin').html(infoClan.time_fin)
+			$('.infouser .puntos').html(infoClan.puntos)
+			$('.infouser .retos').html(infoClan.retos_act+'/'+infoClan.retos_lim)
+			$('.infouser .monedas').html(infoClan.monedas)
+
+			
+			if(!this.t && !$.isEmptyObject(infoClan)){
+				var dias = this.restaFechas( infoClan.time_fin*1000)
+				this.fecha = infoClan.time_fin*1000
+				var now = new Date(self.fecha)
+				var reloj = new Date()
+				$('.infouser .tiempo_fin').html(dias+'d '+(now.getHours()-reloj.getHours())+'h '+(now.getMinutes()-reloj.getMinutes())+'m ')
+
+				//$('.infouser .tiempo_fin').html(dias+'d '+now.getHours()+'h '+now.getMinutes()+'m ')
+				// Crea el ciclo del reloj 
+				this.t = setInterval(function(){
+					if(self.fecha>Date.now()){
+						var reloj = new Date()
+						$('.infouser .tiempo_fin').html(dias+'d '+(now.getHours()-reloj.getHours())+'h '+(now.getMinutes()-reloj.getMinutes())+'m ')
+					}
+				}, 60000)
+			}
+
 		}
 	})
 

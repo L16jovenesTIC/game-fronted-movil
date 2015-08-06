@@ -30,9 +30,9 @@ define(['backbone'], function(Backbone){
 		procesaDatos:function(e){
 			var infoClan = this.get('info')	
 			// Informacion de los eventos
-			this.set({lst_evt:infoClan.lst_evt.reverse()})
+			this.set({lst_evt:_.union(this.get('lst_evt'),infoClan.lst_evt)})
 			// Informacion de los Jugadores del Clan
-			this.set({lst_jug:infoClan.lst_jug})
+			this.set({lst_jug:_.union(this.get('lst_jug'),infoClan.lst_jug)})
 			// Último evento
 			this.set({last_eid:infoClan.last_eid})
 		},
@@ -75,7 +75,7 @@ define(['backbone'], function(Backbone){
 		infoClan: function(){
 			var self = this
 			this.set({type:'info'})
-			this.fetch().done(function(resp){
+			return this.fetch().done(function(resp){
 				// Informacion General del Clan
 				self.set({info:resp.dat})
 				self.poll()
