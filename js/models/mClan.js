@@ -30,9 +30,9 @@ define(['backbone'], function(Backbone){
 		procesaDatos:function(e){
 			var infoClan = this.get('info')	
 			// Informacion de los eventos
-			this.set({lst_evt:_.union(this.get('lst_evt'),infoClan.lst_evt)})
+			this.set({lst_evt:_.union(infoClan.lst_evt,this.get('lst_evt'))})
 			// Informacion de los Jugadores del Clan
-			this.set({lst_jug:_.union(this.get('lst_jug'),infoClan.lst_jug)})
+			this.set({lst_jug:_.union(infoClan.lst_jug, this.get('lst_jug'))})
 			// Último evento
 			this.set({last_eid:infoClan.last_eid})
 		},
@@ -44,6 +44,7 @@ define(['backbone'], function(Backbone){
 		ping: function(){
 			var self = this
 			this.set({type:'ping'})
+			if(this.get('last_eid'))
 			this.fetch().done(function(resp){
 				if(resp.std == 200){
 					self.set({info:resp.dat})
@@ -54,7 +55,7 @@ define(['backbone'], function(Backbone){
 					Base.app.navigate('#error', {trigger:true})
 				}
 			}).fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 
 		},
@@ -69,7 +70,7 @@ define(['backbone'], function(Backbone){
 					self.trigger('cambiaMsg', {})
 				}
 			}).fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		infoClan: function(){

@@ -12,9 +12,12 @@ define(['backbone', 'text!tmpl/error.html'], function(Backbone, template){
 		initialize:function(){
 			//this.template = template
 		}, 
+		template:function(data){
+			return _.template(template)(data)
+		},
 		render:function(){
 			//this.$el.html(this.template)
-			this.$el.html(template)
+			this.$el.html(this.template(this.model.toJSON()))
 			return this
 		}
 	})

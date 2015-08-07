@@ -23,7 +23,7 @@ define(['backbone', 'text!tmpl/homeGame.html', 'models/mClan'], function(Backbon
 			//this.template = template
             this.clan = Base.status.get('clan')
 			this.listenTo(this.clan, 'change:lst_evt', this.render)
-			
+			this.clan.ping()
 		}, 
 		template:function(data){
 			return _.template(template)(data)

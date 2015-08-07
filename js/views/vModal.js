@@ -75,8 +75,14 @@ define(['backbone'], function(Backbone){
 		validaModal:function(e){
 			// Si tiene esta opcion es porq se hace click desde el menú superior
 			if(e.relatedTarget){
-				this.initialize()
+				this.help()
 			}
+		},
+		help:function(){
+			this.title = 'Ayuda'
+			this.body = this.model.get('help')
+
+			this.render()
 		},
 		cerrarModal:function(e){
 			e.preventDefault()
@@ -92,10 +98,14 @@ define(['backbone'], function(Backbone){
 			}
 		},
 		initialize:function(){
-			this.tipoNuevoReto = "temp"
+			if(!this.model){
+				this.model = new Backbone.Model()
+			}
 			this.title = "Error"
-			this.body = '<img src="img/im_error.png" class="img-responsive"><br><p>Mensaje de redireccion a la página donde tiene que contestar la encuenta</p><a href="http://suall.puentearandaestic.com" target="_blank"> Encuesta nuevo </a>';
+			//this.body = '<img src="img/im_error.png" class="img-responsive"><br><p>Mensaje de redireccion a la página donde tiene que contestar la encuenta</p><a href="http://suall.puentearandaestic.com" target="_blank"> Encuesta nuevo </a>';
+			this.body = '<img src="img/im_error.png" class="img-responsive"><br>'+Base.status.get('help')+'<p></p>';
 			//this.modalCambiarCat()
+			this.model.set({title:this.title, body:this.body})
 			this.render()
 		}, 
 		modalCambiarCat:function(){
@@ -121,8 +131,8 @@ define(['backbone'], function(Backbone){
 			this.render()
 		},
 		render:function(){
-			this.$('.modal-title').html(this.title)
-			this.$('.modal-body').html(this.body)
+			this.$('.modal-title').html(this.title || this.model.get('title'))
+			this.$('.modal-body').html(this.body || this.model.get('body'))
 			return this
 		}
 	})

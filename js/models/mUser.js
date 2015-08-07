@@ -85,7 +85,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			this.fetch().done(function(resp){
 				self.trigger('traeKey', {})
 			}).fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 
 		},
@@ -117,7 +117,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 					Base.app.navigate('#homegame', {trigger:true})
 				}else{
 					var mensajeError = data.msg
-					Base.app.navigate('#error', {trigger:true})
+					Base.app.navigate('#error/'+mensajeError, {trigger:true})
 				}
 
 			})
@@ -136,37 +136,36 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			var info = this.get('info')
 			var clan = this.get('clan')
 			clan.set({uid:info.uid, ukey:info.ukey})
-			clan.infoClan().done(function(){
-				self.actualizaInfoMenu()
-			})
+			clan.infoClan()
+			this.listenTo( clan, 'change:info', this.actualizaInfoMenu )
 
 		},
 		listadoRetosUpz: function(upz){
 			var self = this
 			this.set({type:'lstRetos', upz:upz})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		rankingUpz: function(upz){
 			var self = this
 			this.set({type:'rank', upz:upz})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevaCategoria: function(upz){
 			var self = this
 			this.set({type:'newcat',upz:upz})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		cambiarCategoria: function(){
 			var self = this
 			this.set({type:'chgcat'})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		obtenerRetoRandom: function(){
@@ -174,14 +173,14 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 
 			this.set({type:'newrand'})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		cancelaReto:function(opt){
 			var self = this
 			this.set(opt)
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoGeo: function(rid){
@@ -192,14 +191,14 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.set({type:'newgeo'})
 
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		validaReto: function(opt){
 			var self = this
 			this.set(opt)
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoSelfie: function(rid){
@@ -210,7 +209,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.set({type:'newself'})
 
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoPuzzle: function(rid){
@@ -221,7 +220,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			}else
 				this.set({type:'newpuzz'})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoCompletar: function(rid){
@@ -233,7 +232,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.set({type:'newcomp'})
 
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoMultiple: function(rid){
@@ -245,7 +244,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 				this.set({type:'newmult'})
 
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		nuevoRetoRelacionar: function(rid){
@@ -256,7 +255,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			}else
 				this.set({type:'newrel'})
 			return this.fetch().fail(function(){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
 		},
 		saveLocal:function(){
@@ -295,7 +294,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			$('.infouser .puntos').html(infoClan.puntos)
 			$('.infouser .retos').html(infoClan.retos_act+'/'+infoClan.retos_lim)
 			$('.infouser .monedas').html(infoClan.monedas)
-
 			
 			if(!this.t && !$.isEmptyObject(infoClan)){
 				var dias = this.restaFechas( infoClan.time_fin*1000)

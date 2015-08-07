@@ -40,7 +40,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 		initialize:function(){
 			//this.template = template
 			if(!this.model){
-				Base.app.navigate('#error', {trigger:true})
+				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			}
 			var self = this
 			// Modelo de reto 
@@ -50,6 +50,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoGeo(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new geolocalizador({model:self.model}); 
 							self.juego = new geolocalizador({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)
@@ -68,6 +69,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoSelfie(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new selfie({model:self.model}); 
 							self.juego = new selfie({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)
@@ -84,6 +86,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoMultiple(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new selecMultiple({model:self.model}); 
 							self.juego = new selecMultiple({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)
@@ -101,6 +104,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoRelacionar(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new relacionar({model:self.model}); 
 							self.juego = new relacionar({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)
@@ -117,6 +121,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoCompletar(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new completar({model:self.model}); 
 							self.juego = new completar({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)
@@ -135,6 +140,7 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 					Base.status.nuevoRetoPuzzle(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
+							Base.app.vModal.model.set({help:resp.dat.help})
 							//self.juego = new puzzle({model:self.model}); 
 							self.juego = new puzzle({model:new Backbone.Model(resp.dat)}); 
 							self.juego.on('retoSusp', self.retoSusp, self)

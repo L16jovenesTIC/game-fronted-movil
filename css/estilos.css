@@ -90,11 +90,11 @@ body.loading #animacionDado{
 	height: 5px;
 }
 
-.usermenu .infouser img {
+.usermenu .infouser img.picsqr {
 	width: 100px;
 	border: solid 2px #fff;
 	border-radius: 10px;
-	margin: 5px;
+	margin: 5px 0;
 }
 
 .usermenu .infouser .list-group li:last-child{

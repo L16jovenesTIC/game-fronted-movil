@@ -12,7 +12,7 @@ define(function(require){
             "retosup": "rRetoSuperado",
             "retosusp": "rRetoSuspendido",
             "retovali": "rRetoValidando",
-            "error": "rError",
+            "error(/:msg)": "rError",
             "newgroup": "rNuevoGrupo",
             "migrupo": "rGrupoClan",
         },
@@ -23,7 +23,7 @@ define(function(require){
             classie = require('mp/classie')
             this.mp = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
             var alertas = require('views/vModal')
-            this.vModal = new alertas()
+            this.vModal = new alertas({model:new Backbone.Model()})
             this.vModal.render()
         },
         //Metodo se ejecuta antes de entrar a cualquier controlador
@@ -90,10 +90,10 @@ define(function(require){
 
             $('#main').html(this.main.render().el)
         },
-        rError: function(){
+        rError: function(msg){
             //this.intro = new vIntroMain({el:'#main'})
             var retoSup = require('views/vErrorMain')
-            this.main = new retoSup()
+            this.main = new retoSup({model:new Backbone.Model({msg:msg})})
 
             $('#main').html(this.main.render().el)
         },
