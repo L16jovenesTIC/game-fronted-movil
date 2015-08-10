@@ -110,17 +110,17 @@ define(['backbone'], function(Backbone){
 		}, 
 		modalCambiarCat:function(){
 			this.title = "Cambiar Categoria"
-			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-changeCat">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 2 monedas <br> ¿Estás seguro?</p><div class="coins"><span>2</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-changeCat">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		modalCancelarReto:function(rid){
 			this.title = "Cancelar Reto"
-			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-cancelarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 15 monedas <br> ¿Estás seguro?</p><div class="coins"><span>15</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-cancelarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		modalActivarReto:function(rid){
 			this.title = "Activar Reto"
-			this.body = '<p> Gastarás 10 monedas <br> ¿Estás seguro?</p><div class="coins"><span>10</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-activarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
+			this.body = '<p> Gastarás 4 monedas <br> ¿Estás seguro?</p><div class="coins"><span>4</span></div><br> <div class="col-xs-6"><button class="btn btn-default cancel">No</button></div><div class="col-xs-6"><button class="btn btn-default btn-activarReto" data-id="'+rid+'">Sí</button></div><div class="clearfix"></div>'
 			this.render()
 		},
 		modalComprarReto:function(){

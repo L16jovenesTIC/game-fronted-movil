@@ -110,7 +110,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 
 			this.fetch().done(function(data){
 				if(data.std == "200"){
-					console.log('entra a la pagina')
 					self.set({'status':'connected'})
 					self.set({info:data.dat})
 					self.saveLocal()
