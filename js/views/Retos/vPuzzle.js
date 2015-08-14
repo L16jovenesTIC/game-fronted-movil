@@ -179,13 +179,22 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		initialize:function(){
 			var self = this
 			this.puzzle = new puzzle({model:this.model})
+			debugger
+			this.seg = this.model.get('timelim')*1000 
+			//this.now = new Date(0,0,0,0,0,this.seg-1)
+			this.t = setInterval(function(){
+				if(self.seg>0){
+					var reloj = new Date(new Date(self.seg) - Date.now())
+					self.$('.relojPuzz').html(reloj.getMinutes()+':'+reloj.getSeconds())
+				}
+			}, 1000)
 			// Base.status.nuevoRetoPuzzle().done(function(resp){
 			// 	self.model.set(resp.dat)
 			// })
 		},
 		render: function(){
 			this.$el.html(this.puzzle.render().el)
-			this.$el.append('<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>')
+			this.$el.append('<div class="col-xs-12 text-center"><p>Tiempo Limite: <span class="relojPuzz"></span></p></div><div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>')
 			return this
 		}
 	})

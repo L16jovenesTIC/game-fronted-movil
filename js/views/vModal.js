@@ -12,6 +12,13 @@ define(['backbone'], function(Backbone){
 			'click .btn-activarReto':'activarReto',
 		},
 		alerta:function(msg){
+			this.title = "Alerta"
+			this.body = '<br><p>'+msg+'</p>';
+			//this.modalCambiarCat()
+			this.render()
+			this.$el.modal('show')
+		},
+		error:function(msg){
 			this.title = "Error"
 			this.body = '<img src="img/im_error.png" class="img-responsive"><br><p>'+msg+'</p>';
 			//this.modalCambiarCat()
