@@ -15,6 +15,8 @@ define(function(require){
             "error(/:msg)": "rError",
             "newgroup": "rNuevoGrupo",
             "migrupo": "rGrupoClan",
+            "comojugar": "rComoJugar",
+            "creditos": "rCreditos",
         },
         initialize: function (){
             Backbone.history.start({root: "/"});
@@ -115,6 +117,18 @@ define(function(require){
             $('#main').html(this.main.render().el)
             //puzzle = require('puzzle/sliding')
             //puzzle()
+        },
+        rComoJugar: function(){
+            var vComoJugar = require('views/vComoJugar')
+            this.main = new vComoJugar()
+
+            $('#main').html(this.main.render().el)
+        },
+        rCreditos: function(){
+            var vCreditos = require('views/vCreditos')
+            this.main = new vCreditos()
+
+            $('#main').html(this.main.render().el)
         }
     });
 
