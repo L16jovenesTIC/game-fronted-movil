@@ -30,6 +30,7 @@ define(['backbone'], function(Backbone){
 			var self = this
 			Base.status.nuevoRetoSelfie(this.tipoNuevoReto).done(function(resp){
 				if(resp.std == 200){
+
 					self.trigger('cambiaCat', {cat:resp.dat.cat})
 					self.$el.modal('hide')
 				}else{
@@ -45,6 +46,8 @@ define(['backbone'], function(Backbone){
 			Base.status.cancelaReto(opt).done(function(resp){
 				if(resp.std == 200){
 					//self.trigger('delreto', {cat:resp.dat.cat})
+					var audio = $('#audio-cancelarReto').get(0)
+					audio.play()
 					self.$el.modal('hide')
 					Base.app.navigate('#homegame', {trigger:true})
 				}else{
