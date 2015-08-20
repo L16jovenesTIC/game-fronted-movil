@@ -62,7 +62,7 @@ body.loading #animacionDado{
 
 /* habilita el scroll para el menu lateral */
 .mp-level-open{
-	  overflow: scroll;
+	overflow: scroll;
 }
 
 /* User Menu*/
@@ -76,11 +76,16 @@ body.loading #animacionDado{
 	color: white;
 }
 
+.usermenu .list-group, .usermenu .list-group a.disabled{
+	color: grey;
+}
+
 .usermenu .list-group li, .usermenu .list-group a{
 	border: none;
-	background-color: transparent;
+	background-color: transparent !important;
 	padding: 4px;
 	border-bottom: solid 1px #82848E;
+	color: white;
 }
 
 .usermenu .infouser:after {

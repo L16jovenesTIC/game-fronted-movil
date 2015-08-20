@@ -24,6 +24,10 @@ define(function(require){
             // Inicia el menú lateral
             classie = require('mp/classie')
             this.mp = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+            // Desabilitamos los links al inicio
+            $('.menuList .disabled').on('click', function(e){
+                e.preventDefault()
+            })
             var alertas = require('views/vModal')
             this.vModal = new alertas({model:new Backbone.Model()})
             this.vModal.render()
@@ -32,6 +36,7 @@ define(function(require){
         execute:function(call,args){
             if(this.main){
                 this.main.remove()
+                //Esconde el menú lateral
                 this.mp._resetMenu()
             }
             $('body').removeClass('loading')

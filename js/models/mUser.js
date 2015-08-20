@@ -267,15 +267,6 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 		// Función para calcular los días transcurridos entre dos fechas
 		restaFechas:function(f1)
 		 {
-			 // var aFecha1 = f1.split('/'); 
-			 // var aFecha2 = f2.split('/'); 
-			 // var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
-			 // var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
-
-			 //var fFecha1 = Date.UTC(f1); 
-			 //var fFecha2 = Date.UTC(f2); 
-
-			 //var dif = fFecha2 - fFecha1;
 			 var dif = f1 - Date.now();
 			 var dias = Math.floor(dif/(1000*60*60*24)); 
 			 return dias;
@@ -286,6 +277,11 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			var clan = this.get('clan')
 			var infoClan = clan.get('info')
 
+			// Habilitamos las otras paginas del juego
+			$('.menuList .disabled').off()
+			$('.menuList .disabled').removeClass('disabled')
+			// Mostramos la informacion del usuario
+			$('.infouser').removeClass('hide')
 			$('.infouser .picsqr').attr({src:info.picsqr})
 			$('.infouser .nombre').html(info.name)
 			$('.infouser .clan').html(infoClan.nombre)
