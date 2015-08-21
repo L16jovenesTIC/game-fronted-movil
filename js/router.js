@@ -19,7 +19,6 @@ define(function(require){
             "creditos": "rCreditos",
         },
         initialize: function (){
-            Backbone.history.start({root: "/"});
 
             // Inicia el menú lateral
             classie = require('mp/classie')
@@ -31,6 +30,8 @@ define(function(require){
             var alertas = require('views/vModal')
             this.vModal = new alertas({model:new Backbone.Model()})
             this.vModal.render()
+
+            Backbone.history.start({root: "/"});
         },
         //Metodo se ejecuta antes de entrar a cualquier controlador
         execute:function(call,args){
@@ -67,6 +68,8 @@ define(function(require){
             var homegame = require('views/vHomeGameMain')
             this.main = new homegame()
             $('#main').html(this.main.render().el)
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Aqui puedes ver todas las actividades de tu equipo'})
         },
         rSelUPZ: function(){
             //this.intro = new vIntroMain({el:'#main'})
@@ -75,12 +78,13 @@ define(function(require){
             $('#main').html(this.main.render().el)
             // Activa la opción de deslizar la galeria con gestos Touch
             require('utils/activaSliderTouch')()
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Seleccione la UPZ en la que desea participar'})
         },
         rRetoSuperado: function(){
             //this.intro = new vIntroMain({el:'#main'})
             var retoSup = require('views/vRetoSup')
             this.main = new retoSup()
-            
             $('#main').html(this.main.render().el)
         },
         rRetoSuspendido: function(){
@@ -103,6 +107,8 @@ define(function(require){
             this.main = new retoSup({model:new Backbone.Model({msg:msg})})
 
             $('#main').html(this.main.render().el)
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Ocurrio algo inesperado'})
         },
         rNuevoGrupo: function(){
             //this.intro = new vIntroMain({el:'#main'})
@@ -110,8 +116,9 @@ define(function(require){
             this.main = new retoSup()
 
             $('#main').html(this.main.render().el)
-            //puzzle = require('puzzle/sliding')
-            //puzzle()
+
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Si ya estas registrado en un grupo, por favor ingresa las credenciales'})
         },
         rGrupoClan: function(){
             var clan = Base.status.get('clan')
@@ -120,20 +127,27 @@ define(function(require){
             this.main = new vMiGrupo({model:clan})
 
             $('#main').html(this.main.render().el)
-            //puzzle = require('puzzle/sliding')
-            //puzzle()
+
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Aqui puedes encontrar la información del grupo'})
         },
         rComoJugar: function(){
             var vComoJugar = require('views/vComoJugar')
             this.main = new vComoJugar()
 
             $('#main').html(this.main.render().el)
+
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'Estas son las instrucciones del juego'})
         },
         rCreditos: function(){
             var vCreditos = require('views/vCreditos')
             this.main = new vCreditos()
 
             $('#main').html(this.main.render().el)
+
+            //Mensaje de ayuda
+            this.vModal.model.set({help:'El equipo para que todo esto fuera posible'})
         }
     });
 
