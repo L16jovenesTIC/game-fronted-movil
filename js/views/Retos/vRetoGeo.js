@@ -61,7 +61,7 @@ define(['backbone'], function(Backbone){
 		}, 
 		template: function(){
 			var str = '<img src="'+this.model.get('img300')+'" class="img-responsive"><br>'
-			str += '<div class="col-xs-6"><button class="btn btn-default">Hacer CheckIn</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Hacer CheckIn</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
 			return str;
 		},
 		render:function(){

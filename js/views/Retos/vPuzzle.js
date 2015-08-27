@@ -194,7 +194,7 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		},
 		render: function(){
 			this.$el.html(this.puzzle.render().el)
-			this.$el.append('<div class="col-xs-12 text-center"><p>Tiempo Limite: <span class="relojPuzz"></span></p></div><div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>')
+			this.$el.append('<div class="col-xs-12 text-center"><p>Tiempo Limite: <span class="relojPuzz"></span></p></div><div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>')
 			return this
 		}
 	})

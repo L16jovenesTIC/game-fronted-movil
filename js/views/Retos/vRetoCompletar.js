@@ -43,7 +43,7 @@ define(['backbone'], function(Backbone){
 					str += item+'<input type="text" class="input-completar" name="p'+i+'">'
 			})
 			str += '</p></form>'
-			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
 
 			return str;
 		},

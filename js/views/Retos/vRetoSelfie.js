@@ -25,7 +25,7 @@ define(['backbone'], function(Backbone){
 		template: function(){
 
 			var str = '<img src="'+this.model.get('img500')+'" class="img-responsive"><br><input type="file">'
-			str += '<div class="col-xs-6"><button class="btn btn-default">Tomar Foto</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Tomar Foto</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
 			return str;
 		},
 		render:function(){

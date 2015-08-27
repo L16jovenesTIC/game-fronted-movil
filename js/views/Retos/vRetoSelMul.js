@@ -39,7 +39,7 @@ define(['backbone'], function(Backbone){
 						'<input type="radio" name="cod" value='+item.cod+' aria-label="..."></span></div></li>';
 			})
 			str += '</ul></form>'
-			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Voler a la UPZ</button></div>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
 			return str;
 		},
 		render:function(){
