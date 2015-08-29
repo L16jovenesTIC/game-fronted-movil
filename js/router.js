@@ -27,6 +27,19 @@ define(function(require){
             $('.menuList .disabled').on('click', function(e){
                 e.preventDefault()
             })
+            $('#sonido').on('click', function(e){
+                var sonido = $('#sonido-fondo').get(0)
+
+                if($(this).hasClass('active')){
+                    sonido.play()
+                    this.innerHTML = 'Sound On'
+                }
+                else {
+                    sonido.pause()
+                    this.innerHTML = 'Sound Off'
+                }
+
+            })
             var alertas = require('views/vModal')
             this.vModal = new alertas({model:new Backbone.Model()})
             this.vModal.render()

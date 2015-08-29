@@ -14,7 +14,6 @@ define(['backbone', 'text!tmpl/rankUpz.html'], function(Backbone, template){
 		},
 		template:function(data){
 			return _.template(template)(data)
-
 		},
 		render:function(){
 			//this.$el.html(this.template)
