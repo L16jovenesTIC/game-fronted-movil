@@ -179,13 +179,15 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 		initialize:function(){
 			var self = this
 			this.puzzle = new puzzle({model:this.model})
-			debugger
 			this.seg = this.model.get('timelim')*1000 
 			//this.now = new Date(0,0,0,0,0,this.seg-1)
 			this.t = setInterval(function(){
-				if(self.seg>0){
-					var reloj = new Date(new Date(self.seg) - Date.now())
+				var reloj = new Date(new Date(self.seg) - Date.now())
+				if(reloj.getMinutes()+reloj.getSeconds()>0){
 					self.$('.relojPuzz').html(reloj.getMinutes()+':'+reloj.getSeconds())
+				}else{
+					self.trigger('retoSusp', {time:86399,rid:self.model.get('rid')})
+					clearInterval(self.t)
 				}
 			}, 1000)
 			// Base.status.nuevoRetoPuzzle().done(function(resp){
