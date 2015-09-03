@@ -5,7 +5,7 @@ define(['backbone', 'text!tmpl/retoRelacionar.html', 'utils/activaSliderTouch'],
 		events:{
 			'click button:eq(0)': 'enviarRespuesta',
 			'click button:eq(1)': 'volverUPZ',
-			'click .glyphicon-ok': 'relacionar',
+			'click .btn-colb': 'relacionar',
 			'click .lst-cola [data-id]': 'escoger',
 		},
 		volverUPZ:function(e){
@@ -28,6 +28,7 @@ define(['backbone', 'text!tmpl/retoRelacionar.html', 'utils/activaSliderTouch'],
 		},
 		relacionar:function(e){
 			e.preventDefault()
+			$(e.target).addClass('glyphicon-ok')
 			var cod_b = $(e.target).data('id')
 			var num = $(e.target).data('num')
 			this.modelTemp.set({colb: cod_b, numb:num})
