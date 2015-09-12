@@ -137,8 +137,6 @@ define(['backbone', 'text!tmpl/reto.html'], function(Backbone, template){
 			//var template = _.template('<div class="piece"> <%= this.forEach(function(item){ console.log(item )}) %> </div>')
 			//var template = _.template('<%  _.map( <%=col%>, function(item){ return $(item.html).addClass(item.cid).get(0) }) %>')
 			return _.map(data, function(item){ return $(item.render()).attr('data-id', item.cid).get(0) })
-			//return _.map( data , function(item){ return $(item.html).addClass(item.cid).get(0) })
-			return template({col:data})
 		},
 		render:function(){
 			var html = this.template(this.collection.models)

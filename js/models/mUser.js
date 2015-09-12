@@ -54,7 +54,7 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			// Validar Retos
 			else if(this.get('type')==='valcomp' || this.get('type')==='valmult' || this.get('type')==='valpuzz' || this.get('type')==='valrel'){ 
 				var info = this.get('info')
-				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&'+this.get('resp')+'&k='+info.ukey; 
+				return this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&'+this.get('resp')+'&k='+info.ukey;
 			}
 			else{ return this.urlRoot; } 
 
@@ -199,6 +199,18 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 			return this.fetch().fail(function(){
 				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
 			})
+		},
+		validaRetoSelfie: function(opt){
+			var self = this
+			this.set(opt)
+
+			var info = this.get('info')
+			var url = this.urlRoot+'/reto/?f='+this.get('type')+'&uid='+info.uid+'&rid='+this.get('rid')+'&k='+info.ukey
+			var request = new XMLHttpRequest();
+			request.open("POST", url);
+			request.responseType = 'json';
+			request.send(opt.resp);
+			return request
 		},
 		nuevoRetoSelfie: function(rid){
 			var self = this
