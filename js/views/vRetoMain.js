@@ -46,7 +46,6 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 			// Modelo de reto 
 			switch(this.model.get('tipo')){
 				case 'GEO': 
-				
 					Base.status.nuevoRetoGeo(this.model.get('rid')).done(function(resp){
 						if(resp.std == 200){
 							self.model.set(resp.dat)
@@ -57,7 +56,6 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 							self.juego.on('retoSup', self.retoSuperado, self)
 
 							self.render()
-
 						}else if (resp.std == 48 ){ // Cuando el juego se encuentra suspendido
 							self.retoSusp({time:resp.dat.time, rid: self.model.get('rid')})
 						}else{
@@ -77,6 +75,8 @@ function(Backbone, template, puzzle, completar, geolocalizador, selecMultiple, s
 							self.render()
 						}else if (resp.std == 48 ){ // Cuando el juego se encuentra suspendido
 							self.retoSusp({time:resp.dat.time, rid: self.model.get('rid')})
+						}else if (resp.std == 47 ){ // Cuando el juego se encuentra todavia en validación
+							Base.app.navigate('#retovali', {trigger:true})
 						}else{
 							Base.app.vModal.alerta(resp.msg)
 						}

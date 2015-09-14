@@ -13,7 +13,7 @@ define(['backbone', 'text!tmpl/listaRetosUpz.html', 'views/vRetoMain'], function
 
 			var reto = this.reto = new vReto({model:new Backbone.Model({tipo:tipo,rid:rid})})
 			this.$el.html(reto.render().el)
-
+			//this.reto.setElement(this.$('section'))
 			this.undelegateEvents()
 		},
 		boton: function(e) {
