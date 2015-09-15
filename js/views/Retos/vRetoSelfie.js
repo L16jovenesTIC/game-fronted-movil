@@ -10,9 +10,14 @@ define(['backbone'], function(Backbone){
 		agregarFoto:function(e){
 			e.preventDefault()
 			var file = e.target.files[0]
-			var reader  = new FileReader();
 			var formData = new FormData()
 			formData.append("photo", file);
+
+			// Validamos el tipo de archivo
+			if(!['png','jpg','jpeg'].some(function(item){return (file.type.search(item)!=-1)?true:false})){
+				Base.app.vModal.alerta('La foto que intenta subir no está permitida')
+				return false
+			}
 
 			var request = Base.status.validaRetoSelfie({type:"valself", rid:this.model.get('rid'), resp:formData})
 			request.onload = function(e){
@@ -47,7 +52,7 @@ define(['backbone'], function(Backbone){
 		template: function(){
 
 			var str = '<img src="'+this.model.get('img500')+'" class="img-responsive"><br><input type="file" class="fotoSelfie hide">'
-			str += '<div class="col-xs-6"><button class="btn btn-default">Tomar Foto</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
+			str += '<div class="col-xs-6"><button class="btn btn-default">Enviar Foto</button></div><div class="col-xs-6"><button class="btn btn-default">Volver a la UPZ</button></div>'
 			return str;
 		},
 		render:function(){
