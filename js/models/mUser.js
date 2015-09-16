@@ -318,8 +318,12 @@ define(['backbone', 'text!tmpl/intro.html', 'module', 'models/mClan'], function(
 					}
 				}, 60000)
 			}
-
-		}
+		},
+		restaurarMenu:function(){
+			$('.infouser').addClass('hide')
+			$('.menuList a.mn-d').addClass('disabled')
+			
+		},
 	})
 
 	return user
