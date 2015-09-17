@@ -39,7 +39,7 @@ define(['backbone'], function(Backbone){
 		poll:function(){
 			var self = this
 			//this.ping()
-			setInterval(function(){self.ping()}, 60000)
+			this.t = setInterval(function(){self.ping()}, 60000)
 		},
 		ping: function(){
 			var self = this
@@ -52,7 +52,12 @@ define(['backbone'], function(Backbone){
 				}
 				// Error de Validacion
 				else if(resp.std == 2){
-					Base.app.navigate('#error', {trigger:true})
+					clearInterval(self.t);
+					localStorage.clear()
+					Base.status.set({status:'disconnect'})
+					Base.status.restaurarMenu()
+					Base.app.vModal.alerta('Ha iniciado sesion desde otro dispositivo, por favor vuelva a registrarse')
+					Base.app.navigate('#', {trigger:true})
 				}
 			}).fail(function(){
 				Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
