@@ -14,10 +14,13 @@ define(['backbone'], function(Backbone){
 			formData.append("photo", file);
 
 			// Validamos el tipo de archivo
-			if(!['png','jpg','jpeg'].some(function(item){return (file.type.search(item)!=-1)?true:false})){
-				Base.app.vModal.alerta('La foto que intenta subir no está permitida')
-				return false
-			}
+			// if(!['png','jpg','jpeg'].some(function(item){
+			// 	console.log(file.type.search(item));
+			// 	return (file.type.search(item)!=-1)?true:false
+			// 	})){
+			// 	Base.app.vModal.alerta('La foto que intenta subir no está permitida')
+			// 	return false
+			// }
 
 			var request = Base.status.validaRetoSelfie({type:"valself", rid:this.model.get('rid'), resp:formData})
 			request.onload = function(e){
@@ -27,7 +30,7 @@ define(['backbone'], function(Backbone){
 	        		Base.app.navigate('#retovali', {trigger:true})
 	        	}
 	        	// Error al subir la foto
-	        	else if(resp.std == 49 || resp.std == 50 || resp.std == 51 ) 
+	        	else if(resp.std == 49 || resp.std == 50 || resp.std == 51 )
 	        		Base.app.vModal.alerta(resp.msg)
 	        	else
 	        		Base.app.navigate('#error/Ocurrio un error inesperado', {trigger:true})
@@ -40,7 +43,7 @@ define(['backbone'], function(Backbone){
 		tomarFoto:function(e){
 			var self = this
 			e.preventDefault();
-			this.$('.fotoSelfie').trigger("click")
+			this.$('.fotoSelfie').trigger("click");
 		},
 		initialize:function(){
 			 var self = this
@@ -48,7 +51,7 @@ define(['backbone'], function(Backbone){
 			// Base.status.nuevoRetoSelfie().done(function(resp){
 			// 	self.model.set(resp.dat)
 			// })
-		}, 
+		},
 		template: function(){
 
 			var str = '<img src="'+this.model.get('img500')+'" class="img-responsive"><br><input type="file" class="fotoSelfie hide">'
