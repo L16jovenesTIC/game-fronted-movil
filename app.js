@@ -1,20 +1,20 @@
 
 
-// Require JS 
+// Require JS
 
 // For any third party dependencies, like jQuery, place them in the lib folder.
 // Configure loading modules from the lib directory,
 // except for 'app' ones, which are in a sibling
 // directory.
 
-window.urlServidor = 'http://backendsuall.elasticbeanstalk.com';
+window.urlServidor = 'http://api.puentearandaestic.com';
 
 requirejs.config({
     baseUrl: 'js/lib',
     config:{
         'models/mUser':{ urlServer: urlServidor }
     },
-    shim:{ 
+    shim:{
     	'backbone': {
             //These script dependencies should be loaded before loading
             //backbone.js
@@ -75,4 +75,4 @@ requirejs.config({
         //Base.intro = require('views')
         Base.app = new Router()
     });
-      
+
